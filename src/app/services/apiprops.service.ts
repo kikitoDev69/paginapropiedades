@@ -30,4 +30,19 @@ export class ApipropsService {
     return this._http.get<props>(this.url, this.httpOption)
     
    }
+
+
+   //endpoint para imágenes
+
+   
+  url2: string = 'https://localhost:44335/api/Imagenes/id/'
+
+
+  getImage(id: string): Observable<props>{ 
+
+    return this._http.get<props>(this.url2 + id, this.httpOption)
+    
+   }
+
+
 }

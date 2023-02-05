@@ -1,7 +1,7 @@
 :host {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 header {
     background-color: var(--header-color);
@@ -23,9 +23,5 @@ main {
 }
 footer {
     background-color: var(--header-color);
-    padding: 1em;
-}
-.mat-drawer-container {
-    background-color: #303030;
-    color: #303030;
+    /* padding: 1em; */
 }

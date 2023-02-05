@@ -24,6 +24,16 @@ import { PopupComponent } from './components/popup/popup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiPropsComponent } from './components/api-props/api-props.component';
 
+import { FilterpropsComponent } from './components/filterprops/filterprops.component';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { registerLocaleData } from '@angular/common';
+import localeES from "@angular/common/locales/es";
+import { LoginComponent } from './login/login.component';
+registerLocaleData(localeES, "es");
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +41,9 @@ import { ApiPropsComponent } from './components/api-props/api-props.component';
     ScalelineComponent,
     SwitchlayerComponent,
     PopupComponent,
-    ApiPropsComponent
+    ApiPropsComponent,
+    FilterpropsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +60,16 @@ import { ApiPropsComponent } from './components/api-props/api-props.component';
     MatToolbarModule,
     MatIconModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

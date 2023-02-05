@@ -1,7 +1,7 @@
 :host {
     display: block;
     flex-direction: column;
-    height: 88vh;
+    height: 91vh;
 }
 header {
     background-color: var(--header-color);
@@ -19,3 +19,43 @@ main {
     width: 100%;
     height: 100%;
 }
+
+
+
+
+
+
+  .example-container {
+    width: 100%;
+    height: 100%;
+    /* margin: 12px;
+    border: 1px solid #555; */
+    color: black
+   
+  }
+
+  .contenedor{
+  
+    position:absolute;
+    z-index: 1;
+    right:0px;
+    top:0px;
+    color: black
+  }
+
+  .example-card {
+    max-width: 400px;
+  }
+
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  
+    
+  }
+
+  .this{
+    flex: 50%;
+    padding: 10px;
+  }

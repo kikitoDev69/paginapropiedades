@@ -10,6 +10,8 @@ import { estiloDestinos, estilosRutas, myStyle } from 'src/app/estilos/estilos';
 import VectorLayer from 'ol/layer/Vector';
 import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorSource from 'ol/source/Vector';
+
+
 @Component({
   selector: 'app-api-props',
   templateUrl: './api-props.component.html',
@@ -19,13 +21,16 @@ export class ApiPropsComponent implements OnInit{
 
   @Input() map !: Map
 
+  
 
+ vectorSource1 !: Vector;
+ vectorSource2 !: Vector;
+  Propiedades !: any[];
   constructor( private apiProps : ApipropsService){
     
   }
   ngOnInit(): void {
     
-
 
     const propscapa = new LayerGroup({
             'title': 'Propiedades en Yucatán',
@@ -39,41 +44,69 @@ export class ApiPropsComponent implements OnInit{
 
 
     this.apiProps.getProps().subscribe( response =>{
-      console.log(response)
+    
+      //  console.log(response.features)
+      this.Propiedades = response.features
 
-
-    const vectorSource2 = new Vector({
+     this.vectorSource1 = new Vector({
         features: (new GeoJSON()).readFeatures(response,
             {featureProjection: this.map.getView().getProjection()})
         });
 
-        console.log(vectorSource2)
-        
+        this.vectorSource2 = new Vector({
+          features: (new GeoJSON()).readFeatures(response,
+              {featureProjection: this.map.getView().getProjection()})
+          });
+
+    
+       const  visibleLayer = new VectorLayer(
+          {
+            title: 'Propiedades a la venta',
+            source: this.vectorSource1,
+            style: estiloDestinos,
+            //  style: estilosnuevasrutas,
+           declutter: true,
+           visible: true
+       
+          } as GroupLayerOptions
+        )
+      
         
         propscapa.getLayers().push(
-          new VectorLayer({
-           title: 'Propiedades a la venta',
-               source: vectorSource2,
-               style: estiloDestinos,
-               //  style: estilosnuevasrutas,
-              declutter: true
-           } as GroupLayerOptions)
-           )
+         visibleLayer       )
+
+         const  hiddenLayer = new VectorLayer(
+          {
+            title: 'Propiedades a la venta',
+            source: this.vectorSource2,
+            style: estiloDestinos,
+            //  style: estilosnuevasrutas,
+           declutter: true,
+           visible: false
+       
+          } as GroupLayerOptions
+        )
+          
+        propscapa.getLayers().push(
+          hiddenLayer       )
+
+   
 
 
            console.log("Se terminó el proceso de propiedades");
+
+
+
+
+
     }
     )
-   
-    
-   
-
-   
-
-
-            
-              
-
   }
+
+
+
+
+
+
 
 }

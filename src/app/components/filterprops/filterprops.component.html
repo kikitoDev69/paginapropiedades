@@ -1,0 +1,85 @@
+
+<mat-card>
+  <mat-label>Filtra por el criterio que desees.</mat-label>
+</mat-card>
+
+
+<mat-form-field class="example-form-field">
+    <mat-label>Zona</mat-label>
+    <input matInput type="text" [(ngModel)]="value" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; ; updateVisibleLayer(value, value2,value3,value4,value5)">
+      <mat-icon>close</mat-icon>
+    </button>
+
+
+  </mat-form-field >
+
+
+<br>
+
+
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Tipo</mat-label>
+    <input matInput type="text" [(ngModel)]="value2" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
+    <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2='' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  
+<br>
+
+
+
+<mat-form-field class="example-form-field">
+  <mat-label>Precio Mínimo</mat-label>
+  <input matInput type="text" [(ngModel)]="value3" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
+  <button *ngIf="value3" matSuffix mat-icon-button aria-label="Clear" (click)="value3='0' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+  
+<br>
+
+<mat-form-field class="example-form-field">
+  <mat-label>Precio Máximo</mat-label>
+  <input matInput type="text" [(ngModel)]="value4" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
+  <button *ngIf="value4" matSuffix mat-icon-button aria-label="Clear" (click)="value4='0' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+
+<br>
+
+<mat-form-field class="example-form-field">
+  <mat-label>Desarrollador</mat-label>
+  <input matInput type="text" [(ngModel)]="value5" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
+  <button *ngIf="value5" matSuffix mat-icon-button aria-label="Clear" (click)="value5='' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+
+
+
+<!-- 
+  <mat-form-field appearance="fill" *ngIf="zonas.size!==0" >
+    <mat-label>Zonas</mat-label>
+    
+    <mat-select   >
+      <mat-option  [value]="2">
+        hola
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <!-- <mat-form-field>
+    <mat-select [(ngModel)]="selected" ngDefaultControl>
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field> -->

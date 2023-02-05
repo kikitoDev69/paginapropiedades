@@ -14,17 +14,18 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>
-        Inverte en bienes raíces Yucatán.
+        Invierte en bienes raíces Yucatán.
       </span>
       <span>
         <!-- <a mat-stroked-button (click)="login()" *ngIf="!usuario"> Iniciar sesión</a>
         <a mat-stroked-button (click)="logout()" *ngIf="usuario"> Cerrar Sesión</a> -->
+ 
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav-container class="contenido">
    
-    <mat-sidenav style="min-width: 300px;" #cajon mode="side" opened>
+    <mat-sidenav style="min-width: 300px;" #cajon mode="side" closed>
       <!-- Aqui va el contenido-->
       
       
@@ -32,6 +33,7 @@
       <mat-nav-list>
 
         <a mat-list-item  [routerLink]="['/mapa']"><mat-icon>home</mat-icon> Home</a><br>
+        <a mat-list-item  [routerLink]="['/login']"><mat-icon>login</mat-icon> Iniciar Sesión</a><br>
         <!-- <a mat-list-item [routerLink]="['/cliente']"><mat-icon>group</mat-icon> Clientes</a> <br>
         <a mat-list-item  [routerLink]="['/venta']"><mat-icon>shopping_cart</mat-icon> Venta</a> <br> -->
 
@@ -88,9 +90,9 @@
 </mat-drawer-container> -->
 
 
-<footer>
+<!-- <footer>
   Footer
-</footer>
+</footer> -->
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->

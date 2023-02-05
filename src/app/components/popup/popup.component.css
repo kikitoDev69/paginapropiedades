@@ -39,3 +39,9 @@
   .ol-popup-closer:after {
     content: "✖";
   }
+
+
+
+.example-card {
+  max-width: 400px;
+}

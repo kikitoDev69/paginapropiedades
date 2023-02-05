@@ -86,7 +86,7 @@ export class SwitchlayerComponent {
 const opts: LsOptions = {
     reverse: true,
     groupSelectStyle: groupStyle,
-    startActive: true,
+    startActive: false,
     activationMode: 'click'
 };
 const layerSwitcher = new LayerSwitcher(opts);

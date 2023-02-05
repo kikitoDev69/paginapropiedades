@@ -54,6 +54,8 @@ export const estilosRutas = function (feature : any) {
       };
 
 
+
+      
      export  const estiloDestinos = function (feature: any) {
 
         const id = feature.get("desarrollo");
