@@ -33,7 +33,8 @@
       <mat-nav-list>
 
         <a mat-list-item  [routerLink]="['/mapa']"><mat-icon>home</mat-icon> Home</a><br>
-        <a mat-list-item  [routerLink]="['/login']"><mat-icon>login</mat-icon> Iniciar Sesión</a><br>
+        <!-- <a mat-list-item  [routerLink]="['/login']"><mat-icon>login</mat-icon> Iniciar Sesión</a><br> -->
+        <a mat-list-item  [routerLink]="['/uploadfiles']"><mat-icon>upload</mat-icon> Subir archivo</a><br>
         <!-- <a mat-list-item [routerLink]="['/cliente']"><mat-icon>group</mat-icon> Clientes</a> <br>
         <a mat-list-item  [routerLink]="['/venta']"><mat-icon>shopping_cart</mat-icon> Venta</a> <br> -->
 
@@ -48,7 +49,7 @@
       </mat-nav-list>
       <mat-accordion>
         
-
+      <app-login></app-login>
         <!-- <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>

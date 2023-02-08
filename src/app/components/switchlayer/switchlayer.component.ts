@@ -87,7 +87,9 @@ const opts: LsOptions = {
     reverse: true,
     groupSelectStyle: groupStyle,
     startActive: false,
-    activationMode: 'click'
+    activationMode: 'click',
+    
+    
 };
 const layerSwitcher = new LayerSwitcher(opts);
 

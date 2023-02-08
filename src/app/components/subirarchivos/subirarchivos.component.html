@@ -1,0 +1,12 @@
+<div >
+
+    <input type="file" #file placeholder="Escoge el archivo" (change)="uploadFile(file.files)" style="display: none"> 
+    <button type="submit" (click)="file.click()"  mat-raised-button >Subir Archivo</button>
+
+
+    <span class="upload" *ngIf="progress > 0">{{progress}}%</span>
+    <span class="upload" *ngIf="message">{{message}}</span>
+
+
+</div>
+<img  src="https://localhost:44335/Resources/Desarrollos/09736a5956eeb2a8bf743bff07dbd8dc.jpg" alt="foto de desarrollo">

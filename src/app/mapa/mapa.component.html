@@ -2,9 +2,6 @@
 
 <mat-drawer-container class="example-container" [hasBackdrop]=false>
    <mat-drawer #drawer mode="side">
-
-
-
       <mat-card #card *ngIf="propiedad.id===0"   class="example-card">
       
          <mat-card-header>
@@ -67,20 +64,12 @@
            <a href="https://api.whatsapp.com/send?phone=529997402714&text=Hola, quisiera saber más acerca de {{propiedad.desarrollo}}."> <button mat-button><mat-icon>call</mat-icon>Contactar asesor</button></a>
          </mat-card-actions>
        </mat-card>
-
-
-      
-
    </mat-drawer>
 
    <mat-drawer #drawer2 mode="side" position="end">
-
-   
-   
       <app-api-props [map]="map" ></app-api-props>
          <br>
       <button      mat-raised-button (click)="drawer2.toggle()"><mat-icon>filter_alt</mat-icon>¡Listo!</button>
-        
    </mat-drawer>
 
 
@@ -91,16 +80,10 @@
          <app-scaleline [map]="map"></app-scaleline>
          <app-switchlayer [map]="map"></app-switchlayer>
          <app-popup  [map]="map"  [drawer]="drawer" [propiedad]="propiedad"></app-popup>
-      
-     
-           
               <button     class="contenedor" mat-raised-button (click)="drawer2.toggle()"><mat-icon>filter_alt</mat-icon>Filtrar</button>
         
      
    </div>
-   
-   
- 
    </mat-drawer-content>
  </mat-drawer-container>
 

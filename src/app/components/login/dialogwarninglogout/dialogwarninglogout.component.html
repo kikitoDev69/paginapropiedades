@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Cierre de sesión</h1>
+<div mat-dialog-content>
+
+     <h3> ¿Estás seguro de salir?</h3>
+   
+</div>
+
+<div mat-dialog-actions>
+   
+    <button mat-raised-button cdkFocusInital (click)="logout()" [mat-dialog-close]="true" > Cerrar sesión</button>
+    <button mat-raised-button color="primary" (click)="close()"  [mat-dialog-close]="true" color="warn"> Cancelar</button>
+</div>

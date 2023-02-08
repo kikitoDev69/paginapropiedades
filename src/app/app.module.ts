@@ -31,7 +31,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { registerLocaleData } from '@angular/common';
 import localeES from "@angular/common/locales/es";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { SubirarchivosComponent } from './components/subirarchivos/subirarchivos.component';
+import { DialogloginComponent } from './components/login/dialoglogin/dialoglogin.component';
+import { DialogwarninglogoutComponent } from './components/login/dialogwarninglogout/dialogwarninglogout.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -43,7 +46,10 @@ registerLocaleData(localeES, "es");
     PopupComponent,
     ApiPropsComponent,
     FilterpropsComponent,
-    LoginComponent
+    LoginComponent,
+    SubirarchivosComponent,
+    DialogloginComponent,
+    DialogwarninglogoutComponent
   ],
   imports: [
     BrowserModule,

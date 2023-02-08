@@ -1,6 +1,6 @@
-<mat-card>
-    <mat-card-title>Inicio de sesión</mat-card-title>
-    <mat-card-content>
+<h1 mat-dialog-title>Inicio de sesión</h1>
+<div mat-dialog-content>
+    
         <form [formGroup]="loginForm" (ngSubmit)="login()">
         <p>
             <mat-form-field>
@@ -14,10 +14,21 @@
             </mat-form-field>
         </p>
 
-        <div>
-            <button type="submit" [disabled]="!loginForm.valid" mat-raised-button>Iniciar Sesión</button>
-        </div>
+  
     </form>
-    </mat-card-content>
-</mat-card>
+</div>
 
+<div mat-dialog-actions>
+    <button type="submit" (click)="login()" [disabled]="!loginForm.valid" mat-raised-button>Iniciar Sesión</button>
+
+    <button mat-raised-button (click)="close()" >Cancelar</button>
+    
+</div>
+
+
+<!-- 
+<mat-card>
+    <mat-card-title>Inicio de sesión</mat-card-title>
+   
+    </mat-card-content>
+</mat-card> -->

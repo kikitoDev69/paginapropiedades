@@ -37,7 +37,11 @@ export class ApiAuthService {
     this.usuar = this.usuarioSubject.asObservable();
    }
 
+   getUsuar$(): Observable<usuario> {
+    return this.usuarioSubject.asObservable();
+  }
 
+   
 
    login(login: Login): Observable<Respuesta>{
     return this._http.post<Respuesta>(this.url, login, this.httpOption)
