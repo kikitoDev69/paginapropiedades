@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ScalelineComponent } from './components/scaleline/scaleline.component';
 import { SwitchlayerComponent } from './components/switchlayer/switchlayer.component';
 import { PopupComponent } from './components/popup/popup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiPropsComponent } from './components/api-props/api-props.component';
 
 import { FilterpropsComponent } from './components/filterprops/filterprops.component';
@@ -35,6 +35,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SubirarchivosComponent } from './components/subirarchivos/subirarchivos.component';
 import { DialogloginComponent } from './components/login/dialoglogin/dialoglogin.component';
 import { DialogwarninglogoutComponent } from './components/login/dialogwarninglogout/dialogwarninglogout.component';
+import { DialogwarningloginComponent } from './components/common/dialogwarninglogin/dialogwarninglogin.component';
+import { JwtInterceptor } from './security/jwt.interceptor';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -49,7 +51,8 @@ registerLocaleData(localeES, "es");
     LoginComponent,
     SubirarchivosComponent,
     DialogloginComponent,
-    DialogwarninglogoutComponent
+    DialogwarninglogoutComponent,
+    DialogwarningloginComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,10 @@ registerLocaleData(localeES, "es");
     MatExpansionModule,
     
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -48,18 +48,24 @@ export class MapaComponent implements OnInit{
   @ViewChild('drawer2', { static: true }) drawer2!: ElementRef;
   
   ngOnInit(): void {
-   
-    this.map = new Map({
-      view: new View({
-        center: transform([-89.625514 , 20.968206 ],  'EPSG:4326', 'EPSG:3857'),
-        zoom: 9,
-      }),
-      layers: [
-        new TileLayer({
-          source: new OSM(),
+
+    if(this.map){
+
+    }else{
+      this.map = new Map({
+        view: new View({
+          center: transform([-89.625514 , 20.968206 ],  'EPSG:4326', 'EPSG:3857'),
+          zoom: 9,
         }),
-      ],
-      target: 'ol-map'
-    });
+        layers: [
+          new TileLayer({
+            source: new OSM(),
+          }),
+        ],
+        target: 'ol-map'
+      });
+    }
+   
+   
   }
 }

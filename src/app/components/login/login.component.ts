@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
     
     this.usuar$ = this.apiAuth.getUsuar$();
     this.usuar$.subscribe( usuar$ => this.usuario = usuar$
+
+      
     );
    
 
