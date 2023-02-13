@@ -25,26 +25,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
     this.usuar$ = this.apiAuth.getUsuar$();
-    this.usuar$.subscribe( usuar$ => this.usuario = usuar$
+    this.usuar$.subscribe( usuar$ => {this.usuario = usuar$ ;
 
-      
+      this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
+    }
     );
    
-
-  if(this.usuario){
-    this.loginfrase = "Cerrar Sesión"
-   
-    }else{
-      this.loginfrase = "Iniciar Sesión"
-      
-   
-    }  
   }
 
-  
   readonly width: string = '300';
-
-  
 
  constructor(public apiAuth: ApiAuthService,
   private router: Router,
@@ -52,16 +41,9 @@ export class LoginComponent implements OnInit {
   public dialog: MatDialog){
     
   //   if(this.apiAuth.usuarioData){
-     
-
   // this.usuario = true;
   // this.loginfrase = "Cerrar Sesión"
-
   //   } 
-  
-  
-  
-  
   }
 
   
@@ -72,7 +54,7 @@ export class LoginComponent implements OnInit {
       width: this.width
     })
     dialogRef.afterClosed().subscribe(result => {
-      this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
+  
     })
   }
 
@@ -82,8 +64,7 @@ export class LoginComponent implements OnInit {
       width: this.width
     })
     dialogRef.afterClosed().subscribe(result => {
-      this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
-          
+     
        
         
     })

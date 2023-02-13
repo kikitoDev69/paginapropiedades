@@ -37,6 +37,17 @@ import { DialogloginComponent } from './components/login/dialoglogin/dialoglogin
 import { DialogwarninglogoutComponent } from './components/login/dialogwarninglogout/dialogwarninglogout.component';
 import { DialogwarningloginComponent } from './components/common/dialogwarninglogin/dialogwarninglogin.component';
 import { JwtInterceptor } from './security/jwt.interceptor';
+import { EditarpropComponent } from './components/editarprop/editarprop.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+import { AddpropComponent } from './components/propactions/addprop/addprop.component';
+import { DialogwarningdeleteComponent } from './components/editarprop/dialogwarningdelete/dialogwarningdelete.component';
+import { DialogwarnigneditComponent } from './components/editarprop/dialogwarnignedit/dialogwarnignedit.component';
+
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -52,7 +63,11 @@ registerLocaleData(localeES, "es");
     SubirarchivosComponent,
     DialogloginComponent,
     DialogwarninglogoutComponent,
-    DialogwarningloginComponent
+    DialogwarningloginComponent,
+    EditarpropComponent,
+    AddpropComponent,
+    DialogwarningdeleteComponent,
+    DialogwarnigneditComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +90,11 @@ registerLocaleData(localeES, "es");
     MatFormFieldModule,
     MatToolbarModule,
     MatExpansionModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule,
+    PdfViewerModule,
+    MatGridListModule,
+    MatMenuModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

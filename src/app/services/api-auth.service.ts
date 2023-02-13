@@ -32,13 +32,14 @@ export class ApiAuthService {
   }
 
   
+  
   constructor(private _http: HttpClient) {
     this.usuarioSubject = new BehaviorSubject<usuario>(JSON.parse(localStorage.getItem('usuario')! ))
     this.usuar = this.usuarioSubject.asObservable();
    }
 
    getUsuar$(): Observable<usuario> {
-    return this.usuarioSubject.asObservable();
+    return this.usuar;
   }
 
    

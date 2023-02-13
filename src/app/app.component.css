@@ -25,3 +25,14 @@ footer {
     background-color: var(--header-color);
     /* padding: 1em; */
 }
+
+/* .opcion{
+    flex-direction: row;
+    align-content: flex-end;
+} */
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+ /* justify-content: space-between; */

@@ -5,9 +5,19 @@
 
 
 <mat-form-field class="example-form-field">
+  <mat-label>Nombre</mat-label>
+  <input matInput type="text" [(ngModel)]="value6" (input)="updateVisibleLayer(value, value2,value3,value4,value5, value6)">
+  <button *ngIf="value6" matSuffix mat-icon-button aria-label="Clear" (click)="value6=''; ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+    <mat-icon>close</mat-icon>
+  </button>
+
+
+</mat-form-field >
+<br>
+<mat-form-field class="example-form-field">
     <mat-label>Zona</mat-label>
-    <input matInput type="text" [(ngModel)]="value" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
-    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; ; updateVisibleLayer(value, value2,value3,value4,value5)">
+    <input matInput type="text" [(ngModel)]="value" (input)="updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
       <mat-icon>close</mat-icon>
     </button>
 
@@ -21,8 +31,8 @@
 
   <mat-form-field class="example-form-field">
     <mat-label>Tipo</mat-label>
-    <input matInput type="text" [(ngModel)]="value2" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
-    <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2='' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+    <input matInput type="text" [(ngModel)]="value2" (input)="updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+    <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2='' ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
@@ -34,8 +44,8 @@
 
 <mat-form-field class="example-form-field">
   <mat-label>Precio Mínimo</mat-label>
-  <input matInput type="text" [(ngModel)]="value3" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
-  <button *ngIf="value3" matSuffix mat-icon-button aria-label="Clear" (click)="value3='0' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+  <input matInput type="text" [(ngModel)]="value3" (input)="updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+  <button *ngIf="value3" matSuffix mat-icon-button aria-label="Clear" (click)="value3='0' ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
@@ -44,8 +54,8 @@
 
 <mat-form-field class="example-form-field">
   <mat-label>Precio Máximo</mat-label>
-  <input matInput type="text" [(ngModel)]="value4" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
-  <button *ngIf="value4" matSuffix mat-icon-button aria-label="Clear" (click)="value4='0' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+  <input matInput type="text" [(ngModel)]="value4" (input)="updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+  <button *ngIf="value4" matSuffix mat-icon-button aria-label="Clear" (click)="value4='0' ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
@@ -55,8 +65,8 @@
 
 <mat-form-field class="example-form-field">
   <mat-label>Desarrollador</mat-label>
-  <input matInput type="text" [(ngModel)]="value5" (input)="updateVisibleLayer(value, value2,value3,value4,value5)">
-  <button *ngIf="value5" matSuffix mat-icon-button aria-label="Clear" (click)="value5='' ; updateVisibleLayer(value, value2,value3,value4,value5)">
+  <input matInput type="text" [(ngModel)]="value5" (input)="updateVisibleLayer(value, value2,value3,value4,value5,value6)">
+  <button *ngIf="value5" matSuffix mat-icon-button aria-label="Clear" (click)="value5='' ; updateVisibleLayer(value, value2,value3,value4,value5,value6)">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>

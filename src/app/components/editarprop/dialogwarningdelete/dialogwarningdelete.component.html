@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Eliminar propiedad</h1>
+<div mat-dialog-content>
+
+     <h3>¿Estás seguro de que desea eliminar la propiedad?</h3>
+    <h4> Esta acción no podrá ser revertida</h4>
+</div>
+
+<div mat-dialog-actions>
+   
+    <button mat-raised-button color="primary" cdkFocusInital [mat-dialog-close]="false"  > Regresar</button>
+    <button mat-raised-button color="warn"  [mat-dialog-close]="true" color="warn"> Eliminar</button>
+</div>

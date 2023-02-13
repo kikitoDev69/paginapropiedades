@@ -1,19 +1,23 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnInit,  ViewChild, ElementRef} from '@angular/core';
+import { Component, Input, OnInit,  ViewChild, ElementRef, Injectable} from '@angular/core';
 
 import Map from 'ol/Map.js';
 import Overlay from 'ol/Overlay.js';
 import { transform } from 'ol/proj';
 import {clearAllProjections, toLonLat} from 'ol/proj.js';
 import View from 'ol/View';
+import { Observable, Subject } from 'rxjs';
 import { features } from 'src/app/models/features';
 import { ApipropsService } from 'src/app/services/apiprops.service';
+import { FeatureserviceService } from 'src/app/services/featureservice.service';
 
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.css']
 })
+
+
 export class PopupComponent implements OnInit{
 
   @Input() map !: Map;
@@ -24,13 +28,21 @@ export class PopupComponent implements OnInit{
   @ViewChild('popupcontent', { static: true }) content!: ElementRef;
   @ViewChild('popupcloser', { static: true }) closer!: ElementRef;
 
-  constructor(private elementRef: ElementRef, private apiprops: ApipropsService) {
+
+  feature$ !: Observable<number>;
+
+  idfeature !: number;
+
+  constructor(private elementRef: ElementRef, private apiprops: ApipropsService, private featureservice : FeatureserviceService) {
+  
+    
   }
+
+
 
    ngOnInit(){
 
    
-
     const overlay = new Overlay({
       element: this.popup.nativeElement,
       autoPan: {
@@ -59,7 +71,13 @@ export class PopupComponent implements OnInit{
       const feature = this.map.forEachFeatureAtPixel(evt.pixel, (feat) => feat);
     if (feature) {
 
-   
+      let id = feature.get('id');
+    //  console.log("el id es: ")
+ //console.log(id)
+     // this.featureSubject.next(id);
+
+    this.featureservice.updatefeature(id);
+
       //consulta de imagen a la API
      this.apiprops.getImage(feature.get("id")).subscribe( Response =>{
       //console.log(Response)
@@ -74,8 +92,8 @@ export class PopupComponent implements OnInit{
 
         
         this.propiedad.entrega =formatDate( feature.get("entrega2"), "MMMM/YYYY", "es");
-      console.log(    formatDate( this.propiedad.entrega , "MMMM/YYYY", "es"))
-      console.log(     typeof(this.propiedad.entrega) )
+    //  console.log(    formatDate( this.propiedad.entrega , "MMMM/YYYY", "es"))
+    //  console.log(     typeof(this.propiedad.entrega) )
         
       if( this.propiedad.entrega=== "enero/1990"){
         this.propiedad.entrega="Inmediata";
@@ -184,7 +202,7 @@ this.propiedad.medidaMax = feature.get("medidaMax");
 this.propiedad.desarrollo = feature.get("desarrollo");
 this.propiedad.desarrollador = feature.get("desarrollador");
 this.propiedad.apartado = feature.get("apartado");
-this.propiedad.descripcion = feature.get("descripción");
+this.propiedad.descripcion = feature.get("descripcion");
 
 
       }

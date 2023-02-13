@@ -1,0 +1,13 @@
+:host {
+    display: block;
+    flex-direction: column;
+    height: 91vh;
+}
+
+.descr{
+    width: 99%;
+}
+
+.otros{
+    width: 99%;
+}

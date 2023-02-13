@@ -32,12 +32,13 @@ export class ApiFIlesService {
 
    
 
+   url2: string = 'https://localhost:44335/api/File/get/'
 
-  // getImage(id: string): Observable<props>{ 
+  getFiles(id: string): Observable<Respuesta>{ 
 
-  //   return this._http.get<props>(this.url2 + id, this.httpOption)
+    return this._http.get<Respuesta>(this.url2 + id, this.httpOption)
     
-  //  }
+   }
 
   uploadFile(formData: FormData ){ 
 

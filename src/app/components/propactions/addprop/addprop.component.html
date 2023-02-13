@@ -1,0 +1,163 @@
+
+<div class="contenedor">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Nueva Propiedad</mat-card-title>
+  
+      </mat-card-header>
+  
+      <mat-card-content>
+  
+   
+          <mat-form-field class="descr">
+            <mat-label>Descripción</mat-label>
+          <textarea matInput [formControl]="descrip" placeholder="Ingrese nuevo dato"> </textarea>
+           
+          </mat-form-field>
+        
+          <mat-grid-list cols="2" rowHeight="70px">
+            <mat-grid-tile>
+              <mat-form-field class="otros">
+                <mat-label>Desarrollo</mat-label>
+              <input matInput [(ngModel)]="nuevopropiedadDB.Desarrollo" type="text" placeholder="Ingrese nuevo dato">
+            </mat-form-field>
+  
+            </mat-grid-tile>
+        
+        
+  
+  
+      
+  
+        <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Desarrollador</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Desarrollador" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+  
+    </mat-grid-tile>
+   
+      <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Zona</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Zona" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+      
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Tipo</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Tipo" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Precio Mínimo</mat-label>
+        <input  matInput [(ngModel)]="nuevopropiedadDB.PrecioMin" type="number" placeholder="Ingrese nuevo dato">
+        <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Precio Máximo</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.PrecioMax" type="number" placeholder="Ingrese nuevo dato">
+        <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    
+    </mat-grid-list>
+  
+    <mat-grid-list cols="3" rowHeight="70px">
+      
+    <mat-grid-tile>
+    <mat-form-field class="otros">
+          <mat-label>Apartado</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Apartado" type="number" placeholder="Ingrese nuevo dato">
+        <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Enganche</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Enganche" type="text" placeholder="Ingrese nuevo dato">
+       
+      </mat-form-field>
+    </mat-grid-tile>
+  
+  
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Formas de pago</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.FormasDePago" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Meses</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Meses" type="number" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Financiamiento </mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Financiamiento" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+     </mat-grid-tile>
+      
+  
+     <mat-grid-tile>
+      <mat-form-field class="otros">
+          <mat-label>Mantenimiento</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Mantenimiento" type="text" placeholder="Ingrese nuevo dato">
+        
+      </mat-form-field>
+    </mat-grid-tile>
+  
+  </mat-grid-list>
+  
+    <mat-grid-list cols="2" rowHeight="70px" >
+  
+      
+     <mat-grid-tile [rowspan]="2">
+      <mat-form-field appearance="fill">
+          <mat-label>Elige una fecha</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+  
+  
+    <mat-grid-tile>
+      <mat-form-field >
+          <mat-label>Latitud</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Lat" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <mat-form-field>
+          <mat-label>Longitud</mat-label>
+        <input matInput [(ngModel)]="nuevopropiedadDB.Lon" type="text" placeholder="Ingrese nuevo dato">
+      </mat-form-field>
+    </mat-grid-tile>
+  
+    </mat-grid-list>
+  
+  
+  
+      <button mat-raised-button color="primary" (click)="ver()">Ver</button>
+      <button mat-raised-button color="accent" (click)="setData()">Guardar</button>
+   
+  
+    </mat-card-content>
+      </mat-card>
+    </div>

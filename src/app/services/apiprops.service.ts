@@ -1,13 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { features } from '../models/features';
+import { propiedadesDB } from '../models/propiedadesDB';
 import { props } from '../models/props';
+import { Respuesta } from '../models/respuesta';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ApipropsService {
 
   httpOption = {
@@ -18,17 +24,44 @@ export class ApipropsService {
   
   url: string = 'https://localhost:44335/api/Prop'
 
+  private featureSubject: BehaviorSubject<props>  ;
+
+  public features: Observable<props>;
+
+
+  public get featureData(): props{
+    return this.featureSubject.value;
+  }
+
 
   constructor(private _http: HttpClient) {
-
+    this.featureSubject = new BehaviorSubject<props>(null!);
+    this.features = this.featureSubject.asObservable();
 
 
    }
 
+
+
+   getUsuar$(): Observable<props> {
+    return this.features;
+  }
+
+  
    getProps(): Observable<props>{ 
 
-    return this._http.get<props>(this.url, this.httpOption)
+    return this._http.get<props>(this.url, this.httpOption) 
+    .pipe(
+      map(res => {
+        if(res.features){
+          const features: props = res;
+          this.featureSubject.next(features);
+        }
+        return res;
+      })
+    )
     
+
    }
 
 
@@ -44,5 +77,23 @@ export class ApipropsService {
     
    }
 
+// end point add 
+   urladd :string = "https://localhost:44335/api/Prop/add/"
 
+   addProp(nuevaPropiedad : propiedadesDB): Observable<Respuesta>{ 
+
+    return this._http.post<Respuesta>(this.urladd, nuevaPropiedad,  this.httpOption)
+    
+   }
+
+   deleteProp(nuevaPropiedad : any): Observable<Respuesta>{
+    
+    return this._http.post<Respuesta>(this.url, nuevaPropiedad,  this.httpOption)
+   }
+   
+
+   editProp(nuevaPropiedad : propiedadesDB): Observable<Respuesta>{
+    
+    return this._http.put<Respuesta>(this.url, nuevaPropiedad,  this.httpOption)
+   }
 }

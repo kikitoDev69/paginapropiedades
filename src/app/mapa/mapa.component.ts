@@ -7,6 +7,7 @@ import { Transform } from 'ol/transform';
 import { transform } from 'ol/proj';
 import { features } from '../models/features';
 import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mapa',
@@ -47,6 +48,11 @@ export class MapaComponent implements OnInit{
 
   @ViewChild('drawer2', { static: true }) drawer2!: ElementRef;
   
+
+constructor(private router : Router){
+
+}
+
   ngOnInit(): void {
 
     if(this.map){
@@ -67,5 +73,10 @@ export class MapaComponent implements OnInit{
     }
    
    
+  }
+
+
+  editarcomp(){
+    this.router.navigate(['edit'])
   }
 }

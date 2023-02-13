@@ -41,14 +41,16 @@ export class DialogloginComponent implements OnInit {
       this.apiAuth.login(this.loginForm.value).subscribe(response =>{
       if(response.exito===1){
         this.router.navigate(['/'])
+        this.snackBar.open("Sesión iniciada con éxito", '',{
+          duration: 2000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
+
       }
     })
   }
-  this.snackBar.open("Sesión iniciada con éxito", '',{
-    duration: 2000,
-    horizontalPosition: 'right',
-    verticalPosition: 'top',
-  });
+ 
   this.dialogRef.close()
 
  
