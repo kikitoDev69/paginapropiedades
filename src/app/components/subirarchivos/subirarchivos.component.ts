@@ -23,26 +23,31 @@ constructor(private apiFile : ApiFIlesService){}
   }
 
 public uploadFile = (files: any) =>{
-  if(files.lenghh===0){
+  if(files.length===0){
+    console.log("esto no tiene nada")
     return;
   }else{
     let fileToUpload = <File>files[0];
     const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    formData.append('files', fileToUpload, fileToUpload.name);
+  //  formData.append('who','precios' );
+   // formData.append('Id', '52' );
     this.apiFile.uploadFile(formData).subscribe(
-      event => {
+      response => {
+        console.log(response.mensaje)
 
-        if(event.type=== HttpEventType.UploadProgress){
-          if(event.total)
-        {
-             this.progress = Math.round(100 * event.loaded / event.total);
-         }     
+      //   if(event.type=== HttpEventType.UploadProgress){
+      //     if(event.total)
+      //   {
+      //        this.progress = Math.round(100 * event.loaded / event.total);
+      //    }     
 
-       }else if(event.type=== HttpEventType.Response){
+      //  }else
+      //   if(event.type=== HttpEventType.Response){
 
-        this.message= 'Carga exitosa';
-        this.onUploadFinished.emit(event.body);
-       }
+      //   this.message= 'Carga exitosa';
+      //   this.onUploadFinished.emit(event.body);
+      //  }
       }
     )
 

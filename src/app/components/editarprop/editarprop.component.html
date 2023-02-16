@@ -163,26 +163,39 @@
     </mat-card>
   </div>
 
-<div class="contenedor2">
 
   <mat-list *ngIf="Files || Files===[]">
-    <div mat-subheader>Archivos</div>
+    <div mat-subheader>Archivos y Links</div>
+    
+    <!-- For del arreglo de archivos-->
     <mat-list-item *ngFor="let file of Files">
+    
+ <!-- si el archivo es un archivo cargado en el servidor-->
+    <mat-icon  *ngIf="file.tipo===2" matListItemIcon>file_open</mat-icon>
+    <span *ngIf="file.tipo===2" matListItemTitle >  <a   *ngIf="file.tipo===2" [href]=" apisrc + file.src" target="_blank" > {{file.who}}         </a> </span>
+        <!-- <span matListItemLine>{{file.who}}</span>  -->
+      
 
-<!--   
-<div *ngIf="file.tipo===3" class="container">
-  <pdf-viewer [src]="apisrc + file.src"
-              [original-size]="false"
-  ></pdf-viewer>
-</div>
+<!-- si el archivo es un link -->
+  <mat-icon  *ngIf="file.tipo===3" matListItemIcon>link</mat-icon>
+  <span *ngIf="file.tipo===3" matListItemTitle >  <a [href]="file.link" target="_blank" >{{file.who}} </a></span>
+  <!-- <span matListItemLine>{{file.who}}</span>  -->
 
-<div *ngIf="file.tipo===2">
+      <!-- si el archivo es una imagen -->
+<span *ngIf="file.tipo===1">
   <img style="width: 100px" [src]="apisrc + file.src" alt="foto de desarrollo">
+</span>
 
-</div> -->
-      <mat-icon matListItemIcon>folder</mat-icon>
-      <div matListItemTitle>{{file.src}}</div>
-      <!-- <div matListItemLine>{{file.Src}}</div> -->
+
+
+  <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button>
+  
+  <button type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
+  <!-- <span class="upload" *ngIf="progress > 0">{{progress}}%</span> -->
+  <!-- <span class="upload" *ngIf="message">{{message}}</span> -->
+
+
+
     </mat-list-item>
     <mat-divider></mat-divider>
    
@@ -190,5 +203,3 @@
 
 
 
-
-</div>

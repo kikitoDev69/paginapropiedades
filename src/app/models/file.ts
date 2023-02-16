@@ -11,7 +11,7 @@ export interface files {
      link :  string ,
     basesrc : string  ,
     src :  string ,
-
+    who : string
 }
 
 

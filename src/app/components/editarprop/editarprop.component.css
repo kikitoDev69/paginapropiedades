@@ -11,3 +11,11 @@
 .otros{
     width: 99%;
 }
+/* div{
+    display: inline;
+} */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

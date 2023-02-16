@@ -16,6 +16,15 @@ export class ApiFIlesService {
     })
   }
 
+  
+
+
+  httpOption2 = {
+    headers: new HttpHeaders({
+     
+      'content-Type': 'multipart/form-data' 
+    })
+  }
   url: string = 'https://localhost:44335/api/File'
 
 
@@ -40,10 +49,19 @@ export class ApiFIlesService {
     
    }
 
-  uploadFile(formData: FormData ){ 
+  uploadFile(formData: FormData ): Observable<Respuesta>{ 
 
-    return this._http.post(this.url, formData,  {  reportProgress:true, observe: 'events'})
+    return this._http.post<Respuesta>(this.url, formData)
     
    }
+
+   urldelete : string = "https://localhost:44335/api/File/delete/"
+
+   deleteFile(id: number ): Observable<Respuesta>{ 
+
+    return this._http.get<Respuesta>(this.urldelete + id, this.httpOption)
+    
+   }
+
 
 }

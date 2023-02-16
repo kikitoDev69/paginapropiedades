@@ -1,0 +1,36 @@
+
+<h1 mat-dialog-title>Subir archivo </h1>
+<div mat-dialog-content>
+    <form [formGroup]="fileform" >
+        <p>
+            <mat-form-field>
+                <input type="text" formControlName="nombre" matInput placeholder="Nombre">
+            </mat-form-field>
+        </p>
+        
+        <p>
+            <mat-form-field>
+                <input type="text"  formControlName="tipo" matInput placeholder="Tipo">
+            </mat-form-field>
+        </p>
+
+        <p >
+            <mat-form-field>
+                <input type="text"  formControlName="link" matInput placeholder="Link">
+            </mat-form-field>
+        </p>
+      
+
+    </form>
+</div>
+
+<div mat-dialog-actions>
+   
+    <button mat-raised-button color="primary" cdkFocusInital [mat-dialog-close]="false"  > Regresar</button>
+    <!-- <button type="submit" [disabled]="!fileform.valid" mat-raised-button>Subir Archivo</button> -->
+
+    <input type="file" #file3 placeholder="Escoge el archivo" (change)="uploadFile2(file3.files, fileform.value, id)" style="display: none"> 
+    <button type="submit"  (click)="file3.click()"[disabled]="!fileform.valid"  mat-raised-button >Subir Archivo Nuevo</button>
+    <!-- <button mat-raised-button color="accent"  [mat-dialog-close]="true" > Editar</button> -->
+
+</div>

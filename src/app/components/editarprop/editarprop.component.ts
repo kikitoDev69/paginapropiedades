@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ObjectEvent } from 'ol/Object';
 import { Observable } from 'rxjs';
 import { files } from 'src/app/models/file';
 import { propiedadesDB } from 'src/app/models/propiedadesDB';
@@ -11,6 +12,7 @@ import { ApiFIlesService } from 'src/app/services/api-files.service';
 import { ApipropsService } from 'src/app/services/apiprops.service';
 import { FeatureserviceService } from 'src/app/services/featureservice.service';
 import { PopupComponent } from '../popup/popup.component';
+import { DialoguploadfileComponent } from './dialoguploadfile/dialoguploadfile.component';
 import { DialogwarnigneditComponent } from './dialogwarnignedit/dialogwarnignedit.component';
 import { DialogwarningdeleteComponent } from './dialogwarningdelete/dialogwarningdelete.component';
 
@@ -79,7 +81,7 @@ export class EditarpropComponent implements OnInit {
 
   constructor(private fservice : FeatureserviceService,  
      private apiprops : ApipropsService, private filesservice :ApiFIlesService,
-     private dialog : MatDialog, private snackBar : MatSnackBar){}
+     private dialog : MatDialog, private snackBar : MatSnackBar, private apiFile : ApiFIlesService){}
 
 
   getFiles(id : string): any{
@@ -187,6 +189,23 @@ console.log(this.propiedadDB)
 
  }
     
+ obtenerFIles(){
+  this.filesservice.getFiles(""+this.idfeature).subscribe(
+    response =>
+    {
+      console.log(response)
+      if(response.exito ===1){
+        console.log(response.data)
+        this.Files = response.data
+      console.log(this.Files)
+    
+      }else{
+       this.Files = [];
+      }
+    })
+
+
+ }
 
 
  ver(){
@@ -250,6 +269,125 @@ console.log(this.propiedadDB)
     }
   })
 }
+
+public uploadFile(){
+  const dialogRef = this.dialog.open(DialoguploadfileComponent, {
+    width: this.width,
+    data: this.idfeature
+  })
+  dialogRef.afterClosed().subscribe(result => {
+   
+    if(result){
+      this.obtenerFIles();
+    }
+   
+  }
+  )
+
+
+
+}
+
+
+public uploadFile2 = (files: any, who: string, id : number) =>{
+  if(files.length===0){
+    console.log("esto no tiene nada")
+    return;
+  }else{
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('files', fileToUpload, fileToUpload.name);
+   
+    console.log(who)
+    console.log(id)
+    if(who){
+      formData.append('who', who );
+    }else{
+      formData.append('who', 'precios' );
+    }
+
+    if(id){
+      formData.append('Id', ""+id );
+    }else{
+      formData.append('Id', "35" );
+    }
+
+      formData.append('tipo', "2");
+    
+
+    
+   
+   
+    this.apiFile.uploadFile(formData).subscribe(
+      response => {
+        console.log(response.mensaje)
+        if(response.exito===1){
+          this.snackBar.open(response.mensaje, '',{
+            duration: 2000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+          });
+          this.obtenerFIles();
+        }else{
+
+          this.snackBar.open("No se pudo subir el archivo", '',{
+            duration: 3000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+        })
+       
+      //   if(event.type=== HttpEventType.UploadProgress){
+      //     if(event.total)
+      //   {
+      //        this.progress = Math.round(100 * event.loaded / event.total);
+      //    }     
+
+      //  }else
+      //   if(event.type=== HttpEventType.Response){
+
+      //   this.message= 'Carga exitosa';
+      //   this.onUploadFinished.emit(event.body);
+      //  }
+      }
+    }
+    )
+
+    
+  }
+
+}
+
+
+public deleteFile(id : number){
+  const dialogRef = this.dialog.open(DialogwarningdeleteComponent, {
+    width: this.width,
+   
+  })
+  dialogRef.afterClosed().subscribe(result => {
+    if(result){
+   
+      this.apiFile.deleteFile(id).subscribe(response =>{
+        if(response.exito===1){
+          this.snackBar.open('Archivo eliminada con éxito', '', {
+            duration: 2000
+          })
+          
+          this.obtenerFIles()
+        }else{
+          this.snackBar.open('Error al eliminar propiedad', '', {
+            duration: 3000
+          })
+        }
+      })
+
+    }
+  })
+
+
+
+}
+
+
     }
 
 

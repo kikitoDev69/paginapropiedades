@@ -47,6 +47,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AddpropComponent } from './components/propactions/addprop/addprop.component';
 import { DialogwarningdeleteComponent } from './components/editarprop/dialogwarningdelete/dialogwarningdelete.component';
 import { DialogwarnigneditComponent } from './components/editarprop/dialogwarnignedit/dialogwarnignedit.component';
+import { DialoguploadfileComponent } from './components/editarprop/dialoguploadfile/dialoguploadfile.component';
 
 registerLocaleData(localeES, "es");
 
@@ -67,7 +68,8 @@ registerLocaleData(localeES, "es");
     EditarpropComponent,
     AddpropComponent,
     DialogwarningdeleteComponent,
-    DialogwarnigneditComponent
+    DialogwarnigneditComponent,
+    DialoguploadfileComponent
   ],
   imports: [
     BrowserModule,
