@@ -7,6 +7,8 @@ import { ObjectEvent } from 'ol/Object';
 import { Observable } from 'rxjs';
 import { files } from 'src/app/models/file';
 import { propiedadesDB } from 'src/app/models/propiedadesDB';
+
+import { newPropiedadesDB } from 'src/app/models/newPropiedadesDB';
 import { props } from 'src/app/models/props';
 import { ApiFIlesService } from 'src/app/services/api-files.service';
 import { ApipropsService } from 'src/app/services/apiprops.service';
@@ -32,50 +34,50 @@ export class EditarpropComponent implements OnInit {
   readonly width: string = '300';
   propiedades !: props;
 // 
-  propiedadDB : propiedadesDB= {
-    Id: 0,
-    Desarrollo: '',
-    Desarrollador: '',
-    Zona: '',
-    PrecioMin: 0,
-    PrecioMax: 0,
-    Tipo: '',
-    Apartado: 0,
-    Enganche: '',
-    FormasDePago: '',
-    Meses: 0,
-    Financiamiento: '',
-    Mantenimiento: '',
-    Entrega: new DatePipe(""),
-    Disponibilidad: 0,
-    Lat: '',
-    Lon: '',
-    Descripcion: '',
-    MedidasMin: 0,
-    MedidasMax: 0
+  propiedadDB : newPropiedadesDB = {
+    id: 0,
+    desarrollo: '',
+    desarrollador: '',
+    zona: '',
+    precioMin: 0,
+    precioMax: 0,
+    tipo: '',
+    apartado: 0,
+    enganche: '',
+    formasDePago: '',
+    meses: 0,
+    financiamiento: '',
+    mantenimiento: '',
+    entrega: new DatePipe(""),
+    disponibilidad: 0,
+    lat: '',
+    lon: '',
+    descripcion: '',
+    medidasMin: 0,
+    medidasMax: 0
   };
 
-  nuevopropiedadDB : propiedadesDB ={
-    Id: 0,
-    Desarrollo: '',
-    Desarrollador: '',
-    Zona: '',
-    PrecioMin: 0,
-    PrecioMax: 0,
-    Tipo: '',
-    Apartado: 0,
-    Enganche: '',
-    FormasDePago: '',
-    Meses: 0,
-    Financiamiento: '',
-    Mantenimiento: '',
-    Entrega: new DatePipe(""),
-    Disponibilidad: 0,
-    Lat: '',
-    Lon: '',
-    Descripcion: '',
-    MedidasMin: 0,
-    MedidasMax: 0
+  nuevopropiedadDB : newPropiedadesDB = {
+    id: 0,
+    desarrollo: '',
+    desarrollador: '',
+    zona: '',
+    precioMin: 0,
+    precioMax: 0,
+    tipo: '',
+    apartado: 0,
+    enganche: '',
+    formasDePago: '',
+    meses: 0,
+    financiamiento: '',
+    mantenimiento: '',
+    entrega: new DatePipe(""),
+    disponibilidad: 0,
+    lat: '',
+    lon: '',
+    descripcion: '',
+    medidasMin: 0,
+    medidasMax: 0
   };
   date: FormControl =  new FormControl( '');
 
@@ -112,74 +114,80 @@ ngOnInit(){
   // this.idfeature = this.popup.datafeature
 
   //es un objeto
-  this.propiedades = this.apiprops.featureData.features
+//   this.propiedades = this.apiprops.featureData.features
+//   console.log(this.propiedades)
+// if(this.propiedades){
 
-
-  if(this.propiedades && this.idfeature){}
-    //existen propiedades, hay que buscarlas
-    // console.log(this.propiedades)
-    // console.log(this.idfeature)
+//   if(this.propiedades && this.idfeature){}
+//     //existen propiedades, hay que buscarlas
+//     // console.log(this.propiedades)
+//     // console.log(this.idfeature)
     
-    // lo convertimos en array para poder usar el filter 
-    var propiedaduno = Object.values(this.propiedades)
+//     // lo convertimos en array para poder usar el filter 
+//     var propiedaduno = Object.values(this.propiedades)
 
-    // obtenemos la propiedad que tiene el id
-    var propiedad = propiedaduno.filter( x => x.properties.id == this.idfeature)
+//     // obtenemos la propiedad que tiene el id
+//     var propiedad = propiedaduno.filter( x => x.properties.id == this.idfeature)
 
-console.log(propiedad)
+//     //console.log(propiedad)
 
-  //vaciamos la información en un objeto de tipo propiedades Db que es el que tiene nuestro api
+//   //vaciamos la información en un objeto de tipo propiedades Db que es el que tiene nuestro api
 
-    this.propiedadDB.Apartado = propiedad[0].properties.apartado;
-    this.propiedadDB.Desarrollador = propiedad[0].properties.desarrollador;
-    this.propiedadDB.Desarrollo = propiedad[0].properties.desarrollo;
-    this.propiedadDB.Descripcion = propiedad[0].properties.descripcion;
-    this.propiedadDB.Enganche = propiedad[0].properties.enganche;
+//     this.propiedadDB.Apartado = propiedad[0].properties.apartado;
+//     this.propiedadDB.Desarrollador = propiedad[0].properties.desarrollador;
+//     this.propiedadDB.Desarrollo = propiedad[0].properties.desarrollo;
+//     this.propiedadDB.Descripcion = propiedad[0].properties.descripcion;
+//     this.propiedadDB.Enganche = propiedad[0].properties.enganche;
 
-    this.propiedadDB.Entrega = propiedad[0].properties.entrega2;
-    this.propiedadDB.Financiamiento = propiedad[0].properties.financiamiento;
-    this.propiedadDB.Id = propiedad[0].properties.id;
-    this.propiedadDB.Mantenimiento = propiedad[0].properties.mantenimiento;
-    this.propiedadDB.MedidasMax = propiedad[0].properties.medidaMax;
-    this.propiedadDB.MedidasMin = propiedad[0].properties.medidaMin;
-    this.propiedadDB.Meses = propiedad[0].properties.meses;
-    this.propiedadDB.PrecioMax = propiedad[0].properties.precioMax;
-    this.propiedadDB.PrecioMin = propiedad[0].properties.precioMin;
-    this.propiedadDB.Tipo = propiedad[0].properties.tipo;
-    this.propiedadDB.Zona = propiedad[0].properties.zona;
-    this.propiedadDB.Lat = propiedad[0].geometry.coordinates[1];
-    this.propiedadDB.Lon = propiedad[0].geometry.coordinates[0];
-//  Disponibilidad : number,
-//brochure
+//     this.propiedadDB.Entrega = propiedad[0].properties.entrega2;
+//     this.propiedadDB.Financiamiento = propiedad[0].properties.financiamiento;
+//     this.propiedadDB.Id = propiedad[0].properties.id;
+//     this.propiedadDB.Mantenimiento = propiedad[0].properties.mantenimiento;
+//     this.propiedadDB.MedidasMax = propiedad[0].properties.medidaMax;
+//     this.propiedadDB.MedidasMin = propiedad[0].properties.medidaMin;
+//     this.propiedadDB.Meses = propiedad[0].properties.meses;
+//     this.propiedadDB.PrecioMax = propiedad[0].properties.precioMax;
+//     this.propiedadDB.PrecioMin = propiedad[0].properties.precioMin;
+//     this.propiedadDB.Tipo = propiedad[0].properties.tipo;
+//     this.propiedadDB.Zona = propiedad[0].properties.zona;
+//     this.propiedadDB.Lat = propiedad[0].geometry.coordinates[1];
+//     this.propiedadDB.Lon = propiedad[0].geometry.coordinates[0];
+// //  Disponibilidad : number,
+// //brochure
 
-console.log(this.propiedadDB)
+// //console.log(this.propiedadDB)
   
-  this.nuevopropiedadDB = this.propiedadDB;
+//   this.nuevopropiedadDB = this.propiedadDB;
 
-  console.log(this.nuevopropiedadDB)
+//   //console.log(this.nuevopropiedadDB)
   
-  this.date.setValue(this.nuevopropiedadDB.Entrega);
-  this.descrip.setValue(this.nuevopropiedadDB.Descripcion);
+//   this.date.setValue(this.nuevopropiedadDB.Entrega);
+//   this.descrip.setValue(this.nuevopropiedadDB.Descripcion);
+// }else{
+
+   this.apiprops.getProp(this.idfeature).subscribe(response =>{
+    if(response.exito===1){
+      this.propiedadDB = response.data
+    //  console.log(this.propiedadDB)
+      this.nuevopropiedadDB = this.propiedadDB
+      // console.log(this.nuevopropiedadDB)
+      // console.log(this.nuevopropiedadDB.desarrollo)
+      this.date.setValue(this.nuevopropiedadDB.entrega);
+      this.descrip.setValue(this.nuevopropiedadDB.descripcion);
+    }else{
+        console.log("No se pudo recuperar la info del server");
+    }
+  })
+
+
 
 
 
 
 /// obtener los archivos 
-  this.filesservice.getFiles(""+this.idfeature).subscribe(
-  response =>
-  {
-    console.log(response)
-    if(response.exito ===1){
-      console.log(response.data)
-      this.Files = response.data
-    console.log(this.Files)
+this.obtenerFIles();
   
-    }else{
-     this.Files = [];
-    }
-  }
-  
-      )
+      
     // this.Files = this.getFiles(""+ this.idfeature)
     // if(this.Files){
 
@@ -209,16 +217,16 @@ console.log(this.propiedadDB)
 
 
  ver(){
-  console.log(this.date)
-  this.nuevopropiedadDB.Entrega = this.date.value
-  console.log(this.nuevopropiedadDB)
-  this.nuevopropiedadDB.Lat = ""+this.nuevopropiedadDB.Lat
-  this.nuevopropiedadDB.Lon = ""+this.nuevopropiedadDB.Lon
+ // console.log(this.date)
+  this.nuevopropiedadDB.entrega = this.date.value
+  //console.log(this.nuevopropiedadDB)
+  this.nuevopropiedadDB.lat = ""+this.nuevopropiedadDB.lat
+  this.nuevopropiedadDB.lon = ""+this.nuevopropiedadDB.lon
   this.enviarEdit(this.nuevopropiedadDB)
 
  }
 
- enviarEdit(nuevaprop : propiedadesDB){
+ enviarEdit(nuevaprop : newPropiedadesDB){
   const dialogRef = this.dialog.open(DialogwarnigneditComponent, {
     width: this.width,
    
@@ -252,7 +260,7 @@ console.log(this.propiedadDB)
   })
   dialogRef.afterClosed().subscribe(result => {
     if(result){
-      const id = { "Id" : this.nuevopropiedadDB.Id}
+      const id = { "Id" : this.nuevopropiedadDB.id}
       this.apiprops.deleteProp(id).subscribe(response =>{
         if(response.exito===1){
           this.snackBar.open('Propiedad eliminada con éxito', '', {

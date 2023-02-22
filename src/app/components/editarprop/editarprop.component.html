@@ -1,25 +1,22 @@
-
-<div class="contenedor">
+<!-- <mat-grid-list cols="3" >
+  <mat-grid-tile [colspan]="2" rowHeight="fit" > -->
+<div >
   <mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>{{nuevopropiedadDB.Desarrollo}}</mat-card-title>
-
+      <mat-card-title>{{nuevopropiedadDB.desarrollo}}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-
- 
         <mat-form-field class="descr">
           <mat-label>Descripción</mat-label>
         <textarea matInput [formControl]="descrip" placeholder="Ingrese nuevo dato"> </textarea>
-         
         </mat-form-field>
-      
+    
         <mat-grid-list cols="2" rowHeight="70px">
           <mat-grid-tile>
             <mat-form-field class="otros">
               <mat-label>Desarrollo</mat-label>
-            <input matInput [(ngModel)]="nuevopropiedadDB.Desarrollo" type="text" placeholder="Ingrese nuevo dato">
+            <input matInput [(ngModel)]="nuevopropiedadDB.desarrollo" type="text" placeholder="Ingrese nuevo dato">
           </mat-form-field>
 
           </mat-grid-tile>
@@ -32,7 +29,7 @@
       <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Desarrollador</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Desarrollador" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.desarrollador" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
 
   </mat-grid-tile>
@@ -40,7 +37,7 @@
     <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Zona</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Zona" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.zona" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
     
   </mat-grid-tile>
@@ -48,14 +45,14 @@
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Tipo</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Tipo" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.tipo" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
   </mat-grid-tile>
 
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Precio Mínimo</mat-label>
-      <input  matInput [(ngModel)]="nuevopropiedadDB.PrecioMin" type="number" placeholder="Ingrese nuevo dato">
+      <input  matInput [(ngModel)]="nuevopropiedadDB.precioMin" type="number" placeholder="Ingrese nuevo dato">
       <span matTextPrefix>$&nbsp;</span>
     </mat-form-field>
   </mat-grid-tile>
@@ -63,7 +60,7 @@
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Precio Máximo</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.PrecioMax" type="number" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.precioMax" type="number" placeholder="Ingrese nuevo dato">
       <span matTextPrefix>$&nbsp;</span>
     </mat-form-field>
   </mat-grid-tile>
@@ -76,7 +73,7 @@
   <mat-grid-tile>
   <mat-form-field class="otros">
         <mat-label>Apartado</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Apartado" type="number" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.apartado" type="number" placeholder="Ingrese nuevo dato">
       <span matTextPrefix>$&nbsp;</span>
     </mat-form-field>
   </mat-grid-tile>
@@ -84,7 +81,7 @@
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Enganche</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Enganche" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.enganche" type="text" placeholder="Ingrese nuevo dato">
      
     </mat-form-field>
   </mat-grid-tile>
@@ -93,21 +90,21 @@
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Formas de pago</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.FormasDePago" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.formasDePago" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
   </mat-grid-tile>
 
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Meses</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Meses" type="number" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.meses" type="number" placeholder="Ingrese nuevo dato">
     </mat-form-field>
   </mat-grid-tile>
   
   <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Financiamiento </mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Financiamiento" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.financiamiento" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
    </mat-grid-tile>
     
@@ -115,7 +112,7 @@
    <mat-grid-tile>
     <mat-form-field class="otros">
         <mat-label>Mantenimiento</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Mantenimiento" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.mantenimiento" type="text" placeholder="Ingrese nuevo dato">
       
     </mat-form-field>
   </mat-grid-tile>
@@ -139,14 +136,14 @@
   <mat-grid-tile>
     <mat-form-field >
         <mat-label>Latitud</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Lat" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.lat" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
   </mat-grid-tile>
 
   <mat-grid-tile>
     <mat-form-field>
         <mat-label>Longitud</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.Lon" type="text" placeholder="Ingrese nuevo dato">
+      <input matInput [(ngModel)]="nuevopropiedadDB.lon" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
   </mat-grid-tile>
 
@@ -162,12 +159,42 @@
   </mat-card-content>
     </mat-card>
   </div>
+  
+ <!-- </mat-grid-tile>
+
+ <mat-grid-tile> -->
 
 
-  <mat-list *ngIf="Files || Files===[]">
-    <div mat-subheader>Archivos y Links</div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{propiedadDB.desarrollo}}</mat-card-title>
+      <mat-card-subtitle>Portada</mat-card-subtitle>
+    </mat-card-header >
+    <div *ngFor="let file of Files">
+
+      <img  *ngIf='file.tipo===1'  mat-card-image [src]="apisrc + file.src" width="500px">
+      <button *ngIf='file.tipo===1'  mat-button color="warn" (click)="deleteFile(file.idfiles)" >Eliminar foto</button>
     
+    </div>
+   
+    <mat-card-content>
+  
+    </mat-card-content>
+    <mat-card-actions>
+     
+      <button mat-button (click)="uploadFile()">Subir foto</button>
+    </mat-card-actions>
+  </mat-card>
+
+ <!-- </mat-grid-tile>
+ <mat-grid-tile [colspan]="3"> -->
+
+  <mat-list >
+    <div mat-subheader>Archivos y Links</div>
+    <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button>
     <!-- For del arreglo de archivos-->
+    <div *ngIf="Files || Files===[]" >
     <mat-list-item *ngFor="let file of Files">
     
  <!-- si el archivo es un archivo cargado en el servidor-->
@@ -182,24 +209,26 @@
   <!-- <span matListItemLine>{{file.who}}</span>  -->
 
       <!-- si el archivo es una imagen -->
-<span *ngIf="file.tipo===1">
+<!-- <span *ngIf="file.tipo===1">
   <img style="width: 100px" [src]="apisrc + file.src" alt="foto de desarrollo">
-</span>
+</span> -->
 
+<span class="example-spacer"></span>
 
-
-  <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button>
+  <!-- <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button> -->
   
-  <button type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
+  <button *ngIf="file.tipo!==1" type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
   <!-- <span class="upload" *ngIf="progress > 0">{{progress}}%</span> -->
   <!-- <span class="upload" *ngIf="message">{{message}}</span> -->
 
 
 
     </mat-list-item>
+  </div>
     <mat-divider></mat-divider>
    
   </mat-list>
 
 
-
+<!-- </mat-grid-tile>
+</mat-grid-list> -->

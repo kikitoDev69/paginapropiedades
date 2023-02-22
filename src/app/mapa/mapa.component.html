@@ -61,7 +61,7 @@
          <mat-card-actions>
            <button mat-button><mat-icon>read_more</mat-icon>Más información</button>
            <a href="https://api.whatsapp.com/send?phone=529997402714&text=Hola, quisiera saber más acerca de {{propiedad.desarrollo}}."> <button mat-button><mat-icon>call</mat-icon>Contactar asesor</button></a>
-          <a mat-list-item  (click)="editarcomp()"><mat-icon>edit</mat-icon> Editar</a><br>
+          <a  mat-list-item  *ngIf="usuario" (click)="editarcomp()"><mat-icon>edit</mat-icon> Editar</a><br>
            <!-- <button mat-button><mat-icon>read_more</mat-icon>Más información</button> -->
          </mat-card-actions>
        </mat-card>

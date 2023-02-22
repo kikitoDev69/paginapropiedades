@@ -19,3 +19,18 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+/* .example-card{
+    width: max-content;
+    max-height: max-content;
+} */
+
+
+/* mat-card {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+  } */

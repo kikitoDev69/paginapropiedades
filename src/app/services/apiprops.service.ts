@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { features } from '../models/features';
+import { newPropiedadesDB } from '../models/newPropiedadesDB';
 import { propiedadesDB } from '../models/propiedadesDB';
 import { props } from '../models/props';
 import { Respuesta } from '../models/respuesta';
@@ -64,6 +65,15 @@ export class ApipropsService {
 
    }
 
+urlprop = "https://localhost:44335/api/Prop/Id/"
+    
+   getProp(Id: number): Observable<Respuesta>{ 
+
+    return this._http.get<Respuesta>(this.urlprop + Id, this.httpOption);
+    
+
+   }
+
 
    //endpoint para imágenes
 
@@ -92,7 +102,7 @@ export class ApipropsService {
    }
    
 
-   editProp(nuevaPropiedad : propiedadesDB): Observable<Respuesta>{
+   editProp(nuevaPropiedad : newPropiedadesDB): Observable<Respuesta>{
     
     return this._http.put<Respuesta>(this.url, nuevaPropiedad,  this.httpOption)
    }

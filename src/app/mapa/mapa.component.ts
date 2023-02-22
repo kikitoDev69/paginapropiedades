@@ -8,6 +8,9 @@ import { transform } from 'ol/proj';
 import { features } from '../models/features';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
+import { ApiAuthService } from '../services/api-auth.service';
+import { usuario } from '../models/usuario';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mapa',
@@ -48,12 +51,17 @@ export class MapaComponent implements OnInit{
 
   @ViewChild('drawer2', { static: true }) drawer2!: ElementRef;
   
-
-constructor(private router : Router){
+  usuar$ !: Observable<usuario>;
+  usuario !: usuario;
+  
+constructor(private router : Router, private apiAuth: ApiAuthService){
 
 }
 
   ngOnInit(): void {
+
+
+
 
     if(this.map){
 
@@ -72,11 +80,22 @@ constructor(private router : Router){
       });
     }
    
+
+    this.usuar$ = this.apiAuth.getUsuar$();
+    this.usuar$.subscribe( usuar$ => {this.usuario = usuar$ ;
+
+      //this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
+    }
+    );
    
   }
 
 
   editarcomp(){
+
+
     this.router.navigate(['edit'])
   }
+
+
 }
