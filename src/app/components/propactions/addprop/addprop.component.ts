@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -42,7 +42,7 @@ export class AddpropComponent implements OnInit {
 
 
   constructor(private apiprop: ApipropsService, private snackbar : MatSnackBar, private featureservice : FeatureserviceService ,
-    private router : Router , private formBuilder : FormBuilder){}
+    private router : Router , private formBuilder : FormBuilder, private _location : Location){}
 
   //el bjeto que vamos a mandar
   nuevopropiedadDB : propiedadesDB ={
@@ -206,6 +206,10 @@ getData() {
   }
 }
 
+
+backClicked() {
+  this._location.back();
+}
 
 }
 

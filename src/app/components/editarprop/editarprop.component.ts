@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -83,7 +83,8 @@ export class EditarpropComponent implements OnInit {
 
   constructor(private fservice : FeatureserviceService,  
      private apiprops : ApipropsService, private filesservice :ApiFIlesService,
-     private dialog : MatDialog, private snackBar : MatSnackBar, private apiFile : ApiFIlesService){}
+     private dialog : MatDialog, private snackBar : MatSnackBar, private apiFile : ApiFIlesService,
+     private _location : Location){}
 
 
   getFiles(id : string): any{
@@ -395,6 +396,11 @@ public deleteFile(id : number){
 
 }
 
+
+
+backClicked() {
+  this._location.back();
+}
 
     }
 

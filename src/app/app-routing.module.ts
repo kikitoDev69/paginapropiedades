@@ -6,16 +6,19 @@ import { MapaComponent } from './mapa/mapa.component';
 import { EditarpropComponent } from './components/editarprop/editarprop.component';
 import { AddpropComponent } from './components/propactions/addprop/addprop.component';
 import { AuthGuard } from './security/auth.guard';
+import { PropscardComponent } from './components/propscard/propscard.component';
+import { VerpropComponent } from './components/propactions/verprop/verprop.component';
 
 const routes: Routes = [
 
  { path: 'mapa', component: MapaComponent},
   {path: '' , redirectTo: '/mapa', pathMatch:'full'},
   {path: "login", component: LoginComponent},
+  {path: "cards", component: PropscardComponent},
   {path: "uploadfiles", component: SubirarchivosComponent, canActivate: [AuthGuard]},
   {path: "edit", component: EditarpropComponent, canActivate: [AuthGuard]},
-  {path: "add", component: AddpropComponent, canActivate: [AuthGuard]}
-
+  {path: "add", component: AddpropComponent, canActivate: [AuthGuard]},
+  {path: "ver", component: VerpropComponent}
 
 
 

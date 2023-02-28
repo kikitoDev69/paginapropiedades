@@ -1,0 +1,85 @@
+<div class="cointainer">
+    <button     class="regresaricon" mat-raised-button (click)="backClicked()"><mat-icon>kewyboard_return</mat-icon>Regresar</button>
+       
+
+    <h2 class="titulos">{{propiedadDB.desarrollo}}</h2>
+
+    <h3 class="titulos">{{propiedadDB.zona}}</h3>
+    <h3 class="titulos">{{propiedadDB.desarrollador}}</h3>
+
+    <div class="imagen"  *ngFor="let file of Files">
+
+        <img  *ngIf='file.tipo===4'  mat-card-image [src]="apisrc + file.src" >
+        
+    </div>
+     
+
+    <h3><p class="descripcion" >{{propiedadDB.descripcion}}</p></h3>
+
+
+    <mat-grid-list cols="2">
+        <mat-grid-tile>
+
+            <mat-list role="list">
+                <mat-list-item role="listitem"><mat-icon>price_check</mat-icon>Precios</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.precioMin" role="listitem">Precio Mínimo: {{propiedadDB.precioMin | currency: 'MXN'}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.precioMax" role="listitem">Precio Máximo: {{propiedadDB.precioMax | currency: 'MXN'}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.tipo" role="listitem"><mat-icon>apartment</mat-icon>Tipo: {{propiedadDB.tipo}}<real-estate-agent></real-estate-agent></mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.apartado" role="listitem"><mat-icon>handshake</mat-icon>Apartado: {{propiedadDB.apartado}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.enganche" role="listitem"><mat-icon>money</mat-icon>Enganche: {{propiedadDB.apartado}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.formasDePago" role="listitem"><mat-icon>money</mat-icon>Formas de pago: {{propiedadDB.formasDePago}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.meses" role="listitem"><mat-icon>calendar_month</mat-icon>Meses: {{propiedadDB.meses}}</mat-list-item>
+              </mat-list>
+
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+                    <div *ngIf="dateseleccionada===dateInmediata" ><h3>¡Entrega Inmediata!</h3>
+                    </div>
+                    
+                    <div *ngIf="propiedadDB.entrega && dateseleccionada !==dateInmediata"><h3>Entrega: {{dateseleccionada}}</h3>
+                        <mat-calendar    [(selected)]="dateCalendar" [startAt]="dateCalendar"></mat-calendar>
+                    </div>
+                  
+                   
+            </mat-grid-tile>
+
+
+
+
+            </mat-grid-list>
+
+
+            <div fxLayout="row wrap"  fxLayoutAlign="space-around" fxLayoutGap="16px grid">
+                <div fxFlex="20%" fxFlex.xs="99%" fxFlex.sm="33%" *ngFor="let file of Files" >
+            
+                    <div class="archivo" >
+                        <a mat-button [href]="apisrc + file.src" target="_blank">
+                            {{file.who}}
+                            <br>
+                            <mat-icon class="icono">map</mat-icon>
+
+
+                        </a>
+                       
+                           
+
+                     
+
+                    </div>
+
+
+
+                    </div>
+                    </div>
+
+
+
+
+
+
+
+
+                   
+</div>

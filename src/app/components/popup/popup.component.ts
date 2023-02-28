@@ -8,6 +8,8 @@ import {clearAllProjections, toLonLat} from 'ol/proj.js';
 import View from 'ol/View';
 import { Observable, Subject } from 'rxjs';
 import { features } from 'src/app/models/features';
+import { files } from 'src/app/models/file';
+import { ApiFIlesService } from 'src/app/services/api-files.service';
 import { ApipropsService } from 'src/app/services/apiprops.service';
 import { FeatureserviceService } from 'src/app/services/featureservice.service';
 
@@ -30,10 +32,14 @@ export class PopupComponent implements OnInit{
 
 
   feature$ !: Observable<number>;
-
   idfeature !: number;
 
-  constructor(private elementRef: ElementRef, private apiprops: ApipropsService, private featureservice : FeatureserviceService) {
+  apisrc : string = "https://localhost:44335/"
+
+  portada : files [] =[];
+
+  constructor(private elementRef: ElementRef, private apiprops: ApipropsService, private featureservice : FeatureserviceService,
+    private apifile :ApiFIlesService) {
   
     
   }
@@ -78,17 +84,34 @@ export class PopupComponent implements OnInit{
 
     this.featureservice.updatefeature(id);
 
-      //consulta de imagen a la API
-     this.apiprops.getImage(feature.get("id")).subscribe( Response =>{
-      //console.log(Response)
-      try{
-        var imagen =  Response.features[0].properties;
-        var src = imagen.src;
-        var image = imagen.imagenes
-        this.content.nativeElement.innerHTML +=  '<img src="' + src + image +'" style="max-height: 300px; max-width: 280px; padding-top: 10px" alt="" id="dishPhoto">';
 
-        this.propiedad.src = src;
-        this.propiedad.imagenes = image;
+    this.apifile.getportada(id).subscribe( response =>{
+
+      if(response.exito===1){
+
+        this.portada = response.data;
+       
+        this.content.nativeElement.innerHTML +=  '<img src="' + this.apisrc  + this.portada[0].src +'" style="max-height: 300px; max-width: 280px; padding-top: 10px" alt="" id="dishPhoto">';
+        this.propiedad.src = this.portada[0].src;
+      }else{
+        this.portada = []
+      
+      //  this.content.nativeElement.innerHTML =  '';
+        this.propiedad.src = "";
+      }
+
+    })
+      //consulta de imagen a la API
+     //this.apiprops.getImage(id).subscribe( Response =>{
+      //console.log(Response)
+      // try{
+      //   var imagen =  Response.features[0].properties;
+      //   var src = imagen.src;
+      //   var image = imagen.imagenes
+      //   this.content.nativeElement.innerHTML +=  '<img src="' + src + image +'" style="max-height: 300px; max-width: 280px; padding-top: 10px" alt="" id="dishPhoto">';
+
+      //   
+      //   this.propiedad.imagenes = image;
 
         
         this.propiedad.entrega =formatDate( feature.get("entrega2"), "MMMM/YYYY", "es");
@@ -145,69 +168,69 @@ export class PopupComponent implements OnInit{
 
 
 
-      }  catch(error){
+//       }  catch(error){
 
-        console.log(error)
-        console.log("no existe imagen para cargar")
-// cargar todo menos la imagene
-this.propiedad.src = "";
-this.propiedad.imagenes = "";
-this.propiedad.entrega =formatDate( feature.get("entrega2"), "MMMM/YYYY", "es");
-console.log(    formatDate( this.propiedad.entrega , "MMMM/YYYY", "es"))
-console.log(     typeof(this.propiedad.entrega) )
+//         console.log(error)
+//         console.log("no existe imagen para cargar")
+// // cargar todo menos la imagene
+// this.propiedad.src = "";
+// this.propiedad.imagenes = "";
+// this.propiedad.entrega =formatDate( feature.get("entrega2"), "MMMM/YYYY", "es");
+// console.log(    formatDate( this.propiedad.entrega , "MMMM/YYYY", "es"))
+// console.log(     typeof(this.propiedad.entrega) )
 
-if( this.propiedad.entrega=== "enero/1990"){
-this.propiedad.entrega="Inmediata";
-}else{
-if( this.propiedad.entrega=== "enero/1970"){
-  this.propiedad.entrega="Consulte con asesor";
-}
-}
+// if( this.propiedad.entrega=== "enero/1990"){
+// this.propiedad.entrega="Inmediata";
+// }else{
+// if( this.propiedad.entrega=== "enero/1970"){
+//   this.propiedad.entrega="Consulte con asesor";
+// }
+// }
 
 
-this.propiedad.zona = feature.get("zona");
-this.propiedad.tipo = feature.get("tipo");
-this.propiedad.financiamiento = feature.get("financiamiento");
-let engan = feature.get("enganche");
-try {
+// this.propiedad.zona = feature.get("zona");
+// this.propiedad.tipo = feature.get("tipo");
+// this.propiedad.financiamiento = feature.get("financiamiento");
+// let engan = feature.get("enganche");
+// try {
 
  
           
-    var enganch = (parseFloat(engan) *100)
-    console.log("Engance")
-    console.log(engan)
-  if(engan>100){
-    this.propiedad.enganche=parseInt(engan);
-    this.propiedad.tipoenganche=1;
-  }else {
-    this.propiedad.tipoenganche=0;
-    this.propiedad.enganche = enganch;
-  }
+//     var enganch = (parseFloat(engan) *100)
+//     console.log("Engance")
+//     console.log(engan)
+//   if(engan>100){
+//     this.propiedad.enganche=parseInt(engan);
+//     this.propiedad.tipoenganche=1;
+//   }else {
+//     this.propiedad.tipoenganche=0;
+//     this.propiedad.enganche = enganch;
+//   }
 
-  if(Number.isNaN(this.propiedad.enganche)){
+//   if(Number.isNaN(this.propiedad.enganche)){
 
-    this.propiedad.tipoenganche=3;
-  }
+//     this.propiedad.tipoenganche=3;
+//   }
  
-} catch (error) {
-  this.propiedad.tipoenganche=3;
+// } catch (error) {
+//   this.propiedad.tipoenganche=3;
 
-}
+// }
 
-this.propiedad.precioMin = feature.get("precioMin");
-this.propiedad.precioMax = feature.get("precioMax");
-this.propiedad.meses = feature.get("meses");
-this.propiedad.medidaMin = feature.get("medidaMin");
-this.propiedad.medidaMax = feature.get("medidaMax");
-this.propiedad.desarrollo = feature.get("desarrollo");
-this.propiedad.desarrollador = feature.get("desarrollador");
-this.propiedad.apartado = feature.get("apartado");
-this.propiedad.descripcion = feature.get("descripcion");
+// this.propiedad.precioMin = feature.get("precioMin");
+// this.propiedad.precioMax = feature.get("precioMax");
+// this.propiedad.meses = feature.get("meses");
+// this.propiedad.medidaMin = feature.get("medidaMin");
+// this.propiedad.medidaMax = feature.get("medidaMax");
+// this.propiedad.desarrollo = feature.get("desarrollo");
+// this.propiedad.desarrollador = feature.get("desarrollador");
+// this.propiedad.apartado = feature.get("apartado");
+// this.propiedad.descripcion = feature.get("descripcion");
 
 
-      }
-     }
-      )
+//       }
+    // }
+      //)
       
 
         //const coordinates = feature.getGeometry().getCoordinates();

@@ -29,6 +29,8 @@ import { FilterpropsComponent } from './components/filterprops/filterprops.compo
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } 
+    from '@angular/material/select'; 
 import { registerLocaleData } from '@angular/common';
 import localeES from "@angular/common/locales/es";
 import { LoginComponent } from './components/login/login.component';
@@ -48,6 +50,10 @@ import { AddpropComponent } from './components/propactions/addprop/addprop.compo
 import { DialogwarningdeleteComponent } from './components/editarprop/dialogwarningdelete/dialogwarningdelete.component';
 import { DialogwarnigneditComponent } from './components/editarprop/dialogwarnignedit/dialogwarnignedit.component';
 import { DialoguploadfileComponent } from './components/editarprop/dialoguploadfile/dialoguploadfile.component';
+import { PropscardComponent } from './components/propscard/propscard.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { zonePipe } from './components/propscard/filterzones.pipe';
+import { VerpropComponent } from './components/propactions/verprop/verprop.component';
 
 registerLocaleData(localeES, "es");
 
@@ -69,7 +75,9 @@ registerLocaleData(localeES, "es");
     AddpropComponent,
     DialogwarningdeleteComponent,
     DialogwarnigneditComponent,
-    DialoguploadfileComponent
+    DialoguploadfileComponent,
+    PropscardComponent, 
+    zonePipe, VerpropComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +104,9 @@ registerLocaleData(localeES, "es");
     MatNativeDateModule,
     PdfViewerModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    FlexLayoutModule,
+    MatSelectModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

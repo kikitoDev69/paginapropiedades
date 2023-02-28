@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    flex-direction: column;
+    height: 91vh;
+}
+
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 200px;
+}
+
+
+img {
+    max-width: max-content;
+  
+   
+}
+
+.limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}

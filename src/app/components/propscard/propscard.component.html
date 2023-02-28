@@ -1,0 +1,39 @@
+<div class="content">
+   
+    <div class="zon" *ngFor="let zona  of zonas" >
+   
+    <div *ngIf=" propiedades   | zoneFilter : zona  as result" > {{zona}} ({{result.length}})</div>
+          <mat-divider></mat-divider>
+
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let prop of propiedades   | zoneFilter : zona  as result" >
+  
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{prop.desarrollo}}</mat-card-title>
+              <mat-card-subtitle>{{prop.zona}}</mat-card-subtitle>
+            </mat-card-header>
+            <img *ngIf="obtainportada(prop.id)" mat-card-image [src]="apisrc + obtainportada(prop.id) " alt="Photo of $`prop.desarrollo">
+            <mat-card-content>
+              <div [ngClass]="{'limitTextHeight ': isReadMore}">
+                {{prop.descripcion}}
+              </div>
+              
+               <button mat-button type="button" (click)="showText()">
+                 {{ isReadMore ? 'Leer más': 'Leer menos' }}
+              </button>
+
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button  (click)="verprop(prop.id)" ><mat-icon>read_more</mat-icon>Ver propiedad</button>
+              <button mat-button *ngIf="usuario"  (click)="editarcomp(prop.id)"> <mat-icon>edit</mat-icon>Editar propiedad</button>
+            </mat-card-actions>
+          </mat-card>
+
+
+     
+        </div>
+    </div>
+</div>
+</div>

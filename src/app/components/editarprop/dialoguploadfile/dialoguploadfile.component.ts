@@ -4,6 +4,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiFIlesService } from 'src/app/services/api-files.service';
 
+interface Tipos {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-dialoguploadfile',
   templateUrl: './dialoguploadfile.component.html',
@@ -14,7 +19,12 @@ import { ApiFIlesService } from 'src/app/services/api-files.service';
 
 export class DialoguploadfileComponent {
 
-  
+  tipo: Tipos[] = [
+    {value: '1', viewValue: 'Icono'},
+    {value: '2', viewValue: 'Archivo'},
+    {value: '3', viewValue: 'Link'},
+    {value: '4', viewValue: 'Portada'},
+  ];
   constructor(private formBuilder : FormBuilder,
     @Inject(MAT_DIALOG_DATA) public id : number, private apiFile : ApiFIlesService,
     private snackBar : MatSnackBar,
@@ -101,6 +111,72 @@ export class DialoguploadfileComponent {
         
       }
     
+    }
+
+
+
+
+    public uploadFile3 = (files: any, InfoArchivo : InfoArchivo, id : number) =>{
+
+
+      
+        const formData = new FormData();
+       
+        
+          formData.append('who', InfoArchivo.nombre! );
+       
+        
+    
+          formData.append('Id', ""+id );
+        
+    
+          formData.append('tipo', InfoArchivo.tipo!);
+        
+          if(InfoArchivo.link){
+            
+          formData.append('link', InfoArchivo.link);
+        
+          }
+    
+        
+       
+       
+        this.apiFile.uploadFile(formData).subscribe(
+          response => {
+            console.log(response.mensaje)
+            if(response.exito===1){
+              this.snackBar.open(response.mensaje, '',{
+                duration: 2000,
+                horizontalPosition: 'right',
+                verticalPosition: 'top',
+              });
+              this.dialogRef.close(true)
+
+            }else{
+    
+              this.snackBar.open("No se pudo subir el archivo", '',{
+                duration: 3000,
+                horizontalPosition: 'right',
+                verticalPosition: 'top',
+            })
+            this.dialogRef.close(false)
+          //   if(event.type=== HttpEventType.UploadProgress){
+          //     if(event.total)
+          //   {
+          //        this.progress = Math.round(100 * event.loaded / event.total);
+          //    }     
+    
+          //  }else
+          //   if(event.type=== HttpEventType.Response){
+    
+          //   this.message= 'Carga exitosa';
+          //   this.onUploadFinished.emit(event.body);
+          //  }
+          }
+        }
+        )
+    
+        
     }
     
 

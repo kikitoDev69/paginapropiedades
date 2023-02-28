@@ -5,3 +5,12 @@
 .otros{
     width: 99%;
 }
+
+.regresaricon{
+  
+    position:absolute;
+    z-index: 1;
+    right:0px;
+    top:0px;
+    /* color: black */
+  }

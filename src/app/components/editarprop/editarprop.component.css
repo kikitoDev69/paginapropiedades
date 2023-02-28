@@ -34,3 +34,12 @@ a {
     width: calc(100% - 70px);
     height: calc(100% - 70px);
   } */
+
+  .regresaricon{
+  
+    position:absolute;
+    z-index: 1;
+    right:0px;
+    top:0px;
+    /* color: black */
+  }

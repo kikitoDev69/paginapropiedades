@@ -1,6 +1,8 @@
 <!-- <mat-grid-list cols="3" >
   <mat-grid-tile [colspan]="2" rowHeight="fit" > -->
 <div >
+  <button     class="regresaricon" mat-raised-button (click)="backClicked()"><mat-icon>kewyboard_return</mat-icon>Regresar</button>
+       
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>{{nuevopropiedadDB.desarrollo}}</mat-card-title>
@@ -173,8 +175,8 @@
     </mat-card-header >
     <div *ngFor="let file of Files">
 
-      <img  *ngIf='file.tipo===1'  mat-card-image [src]="apisrc + file.src" width="500px">
-      <button *ngIf='file.tipo===1'  mat-button color="warn" (click)="deleteFile(file.idfiles)" >Eliminar foto</button>
+      <img  *ngIf='file.tipo===4'  mat-card-image [src]="apisrc + file.src" width="500px">
+      <button *ngIf='file.tipo===4'  mat-button color="warn" (click)="deleteFile(file.idfiles)" >Eliminar foto</button>
     
     </div>
    
@@ -217,7 +219,8 @@
 
   <!-- <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button> -->
   
-  <button *ngIf="file.tipo!==1" type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
+  <!-- el siguiente botno desblquealo si tienes problemas-->
+  <button *ngIf="file.tipo!==1 && file.tipo!==4" type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
   <!-- <span class="upload" *ngIf="progress > 0">{{progress}}%</span> -->
   <!-- <span class="upload" *ngIf="message">{{message}}</span> -->
 

@@ -7,15 +7,24 @@
                 <input type="text" formControlName="nombre" matInput placeholder="Nombre">
             </mat-form-field>
         </p>
-        
         <p>
+            <mat-form-field appearance="fill">
+                
+                <mat-select placeholder="Tipo" formControlName="tipo">
+                  <mat-option *ngFor="let food of tipo" [value]="food.value" >
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </p>
+        <!-- <p>
             <mat-form-field>
                 <input type="text"  formControlName="tipo" matInput placeholder="Tipo">
             </mat-form-field>
-        </p>
+        </p> -->
 
-        <p >
-            <mat-form-field>
+        <p *ngIf="fileform.value['tipo']==='3'">
+            <mat-form-field >
                 <input type="text"  formControlName="link" matInput placeholder="Link">
             </mat-form-field>
         </p>
@@ -30,7 +39,7 @@
     <!-- <button type="submit" [disabled]="!fileform.valid" mat-raised-button>Subir Archivo</button> -->
 
     <input type="file" #file3 placeholder="Escoge el archivo" (change)="uploadFile2(file3.files, fileform.value, id)" style="display: none"> 
-    <button type="submit"  (click)="file3.click()"[disabled]="!fileform.valid"  mat-raised-button >Subir Archivo Nuevo</button>
+    <button type="submit"  (click)="(fileform.value['tipo']!=='3') ? file3.click() : uploadFile3(file3.files, fileform.value, id) "[disabled]="!fileform.valid"  mat-raised-button >Subir Archivo Nuevo</button>
     <!-- <button mat-raised-button color="accent"  [mat-dialog-close]="true" > Editar</button> -->
 
 </div>

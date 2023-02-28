@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 export class MapaComponent implements OnInit{
 
 
+  apisrc : string = "https://localhost:44335/"
   propiedad : features = {
     id : 0,
     desarrollo : "",
@@ -97,5 +98,10 @@ constructor(private router : Router, private apiAuth: ApiAuthService){
     this.router.navigate(['edit'])
   }
 
+
+  verProp(){
+
+    this.router.navigate(['ver'])
+  }
 
 }

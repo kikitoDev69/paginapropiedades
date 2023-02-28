@@ -65,6 +65,10 @@ export class ApipropsService {
 
    }
 
+
+
+
+
 urlprop = "https://localhost:44335/api/Prop/Id/"
     
    getProp(Id: number): Observable<Respuesta>{ 
@@ -106,4 +110,17 @@ urlprop = "https://localhost:44335/api/Prop/Id/"
     
     return this._http.put<Respuesta>(this.url, nuevaPropiedad,  this.httpOption)
    }
+
+
+    url3 : string = "https://localhost:44335/api/Prop/propiedadesCard";
+   getProps3(): Observable<Respuesta>{ 
+
+    return this._http.get<Respuesta>(this.url3, this.httpOption) 
+    
+    
+
+   }
 }
+
+
+

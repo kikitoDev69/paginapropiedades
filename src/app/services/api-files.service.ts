@@ -43,7 +43,25 @@ export class ApiFIlesService {
 
    url2: string = 'https://localhost:44335/api/File/get/'
 
-  getFiles(id: string): Observable<Respuesta>{ 
+
+   urlportadas: string = "https://localhost:44335/api/File/portadas"
+
+  getportadas(): Observable<Respuesta>{ 
+
+    return this._http.get<Respuesta>(this.urlportadas, this.httpOption)
+    
+   }
+
+   urlportada: string = "https://localhost:44335/api/File/portada/"
+
+  getportada(id : number): Observable<Respuesta>{ 
+
+    return this._http.get<Respuesta>(this.urlportada + id, this.httpOption)
+    
+   }
+
+
+   getFiles(id: string): Observable<Respuesta>{ 
 
     return this._http.get<Respuesta>(this.url2 + id, this.httpOption)
     
