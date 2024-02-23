@@ -12,6 +12,7 @@ import { files } from 'src/app/models/file';
 import { ApiFIlesService } from 'src/app/services/api-files.service';
 import { ApipropsService } from 'src/app/services/apiprops.service';
 import { FeatureserviceService } from 'src/app/services/featureservice.service';
+import { apisrcFile as apisrc } from 'src/app/security/apissource';
 
 @Component({
   selector: 'app-popup',
@@ -34,7 +35,6 @@ export class PopupComponent implements OnInit{
   feature$ !: Observable<number>;
   idfeature !: number;
 
-  apisrc : string = "https://localhost:44335/"
 
   portada : files [] =[];
 
@@ -91,7 +91,7 @@ export class PopupComponent implements OnInit{
 
         this.portada = response.data;
        
-        this.content.nativeElement.innerHTML +=  '<img src="' + this.apisrc  + this.portada[0].src +'" style="max-height: 300px; max-width: 280px; padding-top: 10px" alt="" id="dishPhoto">';
+        this.content.nativeElement.innerHTML +=  '<img src="' + apisrc  + this.portada[0].src +'" style="max-height: 300px; max-width: 280px; padding-top: 10px" alt="" id="dishPhoto">';
         this.propiedad.src = this.portada[0].src;
       }else{
         this.portada = []
@@ -138,13 +138,19 @@ export class PopupComponent implements OnInit{
           var enganch = (parseFloat(engan) *100)
           console.log("Engance")
           console.log(engan)
-        if(engan>100){
-          this.propiedad.enganche=parseInt(engan);
-          this.propiedad.tipoenganche=1;
-        }else {
-          this.propiedad.tipoenganche=0;
-          this.propiedad.enganche = enganch;
-        }
+          if( typeof enganch === 'string'){
+            this.propiedad.tipoenganche=3;
+          }else{
+            if(engan>100){
+              this.propiedad.enganche2=parseInt(engan);
+              this.propiedad.tipoenganche=1;
+            }else {
+              this.propiedad.tipoenganche=0;
+              this.propiedad.enganche = enganch;
+            }
+          }
+       
+      
       
         if(Number.isNaN(this.propiedad.enganche)){
       

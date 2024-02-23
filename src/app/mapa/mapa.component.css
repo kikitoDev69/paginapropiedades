@@ -2,6 +2,7 @@
     display: block;
     flex-direction: column;
     height: 91vh;
+    width: 100%;
 }
 header {
     background-color: var(--header-color);
@@ -40,8 +41,10 @@ main {
   }
 
   .example-card {
-    max-width: 400px;
+    max-width: 350px;
   }
+
+ 
 
 
   .flex-row {

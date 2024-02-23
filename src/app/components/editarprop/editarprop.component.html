@@ -30,8 +30,8 @@
 
       <mat-grid-tile>
     <mat-form-field class="otros">
-        <mat-label>Desarrollador</mat-label>
-      <input matInput [(ngModel)]="nuevopropiedadDB.desarrollador" type="text" placeholder="Ingrese nuevo dato">
+        <mat-label>Distribuidora</mat-label>
+      <input matInput [(ngModel)]="nuevopropiedadDB.distribuidora" type="text" placeholder="Ingrese nuevo dato">
     </mat-form-field>
 
   </mat-grid-tile>
@@ -198,16 +198,16 @@
     <!-- For del arreglo de archivos-->
     <div *ngIf="Files || Files===[]" >
     <mat-list-item *ngFor="let file of Files">
-    
+<div class="item">
  <!-- si el archivo es un archivo cargado en el servidor-->
     <mat-icon  *ngIf="file.tipo===2" matListItemIcon>file_open</mat-icon>
-    <span *ngIf="file.tipo===2" matListItemTitle >  <a   *ngIf="file.tipo===2" [href]=" apisrc + file.src" target="_blank" > {{file.who}}         </a> </span>
+    <span *ngIf="file.tipo===2" matListItemTitle >  <a mat-button  *ngIf="file.tipo===2" [href]=" apisrc + file.src" target="_blank" > {{file.who}} </a> </span>
         <!-- <span matListItemLine>{{file.who}}</span>  -->
       
 
 <!-- si el archivo es un link -->
   <mat-icon  *ngIf="file.tipo===3" matListItemIcon>link</mat-icon>
-  <span *ngIf="file.tipo===3" matListItemTitle >  <a [href]="file.link" target="_blank" >{{file.who}} </a></span>
+  <span *ngIf="file.tipo===3" matListItemTitle >  <a  mat-button [href]="file.link" target="_blank" >{{file.who}} </a></span>
   <!-- <span matListItemLine>{{file.who}}</span>  -->
 
       <!-- si el archivo es una imagen -->
@@ -215,17 +215,46 @@
   <img style="width: 100px" [src]="apisrc + file.src" alt="foto de desarrollo">
 </span> -->
 
-<span class="example-spacer"></span>
-
   <!-- <button type="submit" (click)="uploadFile()"  mat-raised-button >Subir Archivo Nuevo</button> -->
   
   <!-- el siguiente botno desblquealo si tienes problemas-->
-  <button *ngIf="file.tipo!==1 && file.tipo!==4" type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
+  <button class="eliminar" *ngIf="file.tipo!==1 && file.tipo!==4" type="submit" (click)="deleteFile(file.idfiles)"  mat-raised-button >Eliiminar Archivo</button>
   <!-- <span class="upload" *ngIf="progress > 0">{{progress}}%</span> -->
   <!-- <span class="upload" *ngIf="message">{{message}}</span> -->
+ 
+  <!-- <form  class="eliminar" [formGroup]="fileform">  -->
+  
 
+  <mat-form-field  *ngIf="file.tipo!==1 && file.tipo!==4" appearance="fill" > 
 
+    <mat-select *ngIf="!file.rol" placeholder="Rol" [(value)]="selectedRolNull" (selectionChange)="select($event.value, file.idfiles)" >
+      <mat-option *ngFor="let food of roles" [value]="food.value"  >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
 
+    <mat-select *ngIf="file.rol ===1" placeholder="Rol" [(value)]="selectedRol1" (selectionChange)="select($event.value, file.idfiles)" >
+      <mat-option *ngFor="let food of roles" [value]="food.value"  >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+
+    <mat-select *ngIf="file.rol ===2" placeholder="Rol" [(value)]="selectedRol2" (selectionChange)="select($event.value, file.idfiles)" >
+      <mat-option *ngFor="let food of roles" [value]="food.value"  >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+
+    <mat-select *ngIf="file.rol ===3" placeholder="Rol" [(value)]="selectedRol3" (selectionChange)="select($event.value, file.idfiles)" >
+      <mat-option *ngFor="let food of roles" [value]="food.value"  >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+
+    
+  </mat-form-field>
+<!-- </form> -->
+</div>
     </mat-list-item>
   </div>
     <mat-divider></mat-divider>

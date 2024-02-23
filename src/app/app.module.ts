@@ -52,8 +52,17 @@ import { DialogwarnigneditComponent } from './components/editarprop/dialogwarnig
 import { DialoguploadfileComponent } from './components/editarprop/dialoguploadfile/dialoguploadfile.component';
 import { PropscardComponent } from './components/propscard/propscard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 import { zonePipe } from './components/propscard/filterzones.pipe';
 import { VerpropComponent } from './components/propactions/verprop/verprop.component';
+import { zonePropPipe } from './components/propscard/filterprop.pipe';
+import { desarrolloPropPipe } from './components/propscard/filterpropnombre.pipe';
+import {MatChipsModule} from '@angular/material/chips';
+import { UserComponent } from './components/user/user.component';
+import { EdituserComponent } from './components/user/edituser/edituser.component';
+import { AdduserComponent } from './components/user/adduser/adduser.component';
+
 
 registerLocaleData(localeES, "es");
 
@@ -77,7 +86,13 @@ registerLocaleData(localeES, "es");
     DialogwarnigneditComponent,
     DialoguploadfileComponent,
     PropscardComponent, 
-    zonePipe, VerpropComponent
+    zonePipe, VerpropComponent,
+    zonePropPipe,
+    desarrolloPropPipe,
+    UserComponent,
+    EdituserComponent,
+    AdduserComponent
+
   ],
   imports: [
     BrowserModule,
@@ -106,7 +121,8 @@ registerLocaleData(localeES, "es");
     MatGridListModule,
     MatMenuModule,
     FlexLayoutModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

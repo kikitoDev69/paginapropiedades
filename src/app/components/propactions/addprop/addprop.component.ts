@@ -65,7 +65,13 @@ export class AddpropComponent implements OnInit {
     Lon: '',
     Descripcion: '',
     MedidasMin: 0,
-    MedidasMax: 0
+    MedidasMax: 0,
+    link: null,
+    crm: null,
+    machotes: null,
+    otro: null,
+    area: null,
+    constructora: null
   };
 
   propiedadSend : Object = new Object();

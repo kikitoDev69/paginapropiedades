@@ -73,27 +73,11 @@ export class SwitchlayerComponent {
 } as GroupLayerOptions)
 
 
-    // this.control = new ControlScaleLine({
-    //   target: this.elementRef.nativeElement,
-    // });
-    // this.map.addControl(this.control);
-  //}
+
 
   this.map.addLayer(this.layerbase)
 
   const groupStyle: GroupSelectStyle = 'children';
 
-const opts: LsOptions = {
-    reverse: true,
-    groupSelectStyle: groupStyle,
-    startActive: false,
-    activationMode: 'click',
-    
-    
-};
-const layerSwitcher = new LayerSwitcher(opts);
-
-
-  this.map.addControl(layerSwitcher);
 }
 }

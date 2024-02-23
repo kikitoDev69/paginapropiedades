@@ -1,0 +1,45 @@
+
+<form [formGroup]="userForm" (ngSubmit)="add()">
+    <p>
+        <mat-form-field>
+            <input type="text" formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="nombre" matInput placeholder="Nombre">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="apellidos" matInput placeholder="Apellidos">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="usuario1" matInput placeholder="Usuario">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="password"  formControlName="psswrd" matInput placeholder="Contraseña">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-select  placeholder="Rol"  formControlName="rol" >
+            <mat-option *ngFor="let food of roles" [value]="food.value"  >
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+    </p>
+
+
+</form>
+
+
+<div>
+<button type="submit" (click)="add()" [disabled]="!userForm.valid" mat-raised-button>Añadir</button>
+
+
+</div>

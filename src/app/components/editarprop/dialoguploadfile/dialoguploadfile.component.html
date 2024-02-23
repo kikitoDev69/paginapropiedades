@@ -17,6 +17,17 @@
                 </mat-select>
               </mat-form-field>
         </p>
+
+        <p>
+            <mat-form-field appearance="fill">
+                
+                <mat-select placeholder="Rol" formControlName="rol" >
+                  <mat-option *ngFor="let food of roles" [value]="food.value" >
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </p>
         <!-- <p>
             <mat-form-field>
                 <input type="text"  formControlName="tipo" matInput placeholder="Tipo">

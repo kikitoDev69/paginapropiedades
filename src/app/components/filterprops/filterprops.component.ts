@@ -84,7 +84,15 @@ zonaselected : string  ="";
     var min = parseInt(filterCriterio3);
     var max = parseInt(filterCriterio4);
 
-    if(min < max){
+    if(!min){
+      filterCriterio3='0';
+    }
+
+    if(!max){
+      filterCriterio4='0';
+    }
+
+    if(min <= max){
 
     }else{
       filterCriterio4 = ""+Number.MAX_VALUE;

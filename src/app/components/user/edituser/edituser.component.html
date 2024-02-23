@@ -1,0 +1,61 @@
+
+<form [formGroup]="userForm" (ngSubmit)="edit()">
+    <p>
+        <mat-form-field>
+            <input type="text" formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+    </p>
+    
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="nombre" matInput placeholder="Nombre">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="apellidos" matInput placeholder="Apellidos">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="text"  formControlName="usuario1" matInput placeholder="Usuario">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <input type="password"  formControlName="psswrd" matInput placeholder="Contraseña">
+        </mat-form-field>
+    </p>
+    <p>
+       
+
+
+
+    <mat-select *ngIf="user.rol ===1" placeholder="Rol" [(value)]="selectedRol1" formControlName="rol" >
+        <mat-option *ngFor="let food of roles" [value]="food.value"  >
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+  
+      <mat-select *ngIf="user.rol ===2" placeholder="Rol" [(value)]="selectedRol2"  formControlName="rol">
+        <mat-option *ngFor="let food of roles" [value]="food.value"  >
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+  
+    </p>
+
+
+</form>
+
+
+<div>
+<button type="submit" (click)="edit()" [disabled]="!userForm.valid" mat-raised-button>Editar</button>
+
+
+</div>
+<div *ngIf="user.rol ===0">
+<h3>¡Añade un nuevo usuario!</h3>
+<app-adduser></app-adduser>
+
+</div>

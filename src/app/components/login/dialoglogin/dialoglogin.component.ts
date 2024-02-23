@@ -46,12 +46,20 @@ export class DialogloginComponent implements OnInit {
           horizontalPosition: 'right',
           verticalPosition: 'top',
         });
+        
+  this.dialogRef.close()
+
+      }else{
+        this.snackBar.open(`No se pudo iniciar sesión: ${response.mensaje}`, '',{
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
 
       }
     })
   }
  
-  this.dialogRef.close()
 
  
 }

@@ -1,11 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
 
 <div class="contenedor-padre">
   <mat-toolbar class="barra" color="primary">
@@ -17,9 +10,6 @@
         Invierte en bienes raíces Yucatán.
       </span>
       <span>
-        <!-- <a mat-stroked-button (click)="login()" *ngIf="!usuario"> Iniciar sesión</a>
-        <a mat-stroked-button (click)="logout()" *ngIf="usuario"> Cerrar Sesión</a> -->
- 
       </span>
       <span class="example-spacer"></span>
       <div class="opcion">
@@ -31,14 +21,7 @@
           <mat-icon>add</mat-icon>
           <span>Nueva propiedad</span>
         </button>
-        <!-- <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voice mail</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
-        </button> -->
+
       </mat-menu>
     </div>
 
@@ -47,47 +30,17 @@
   <mat-sidenav-container class="contenido">
    
     <mat-sidenav style="min-width: 300px;" #cajon mode="side" closed>
-      <!-- Aqui va el contenido-->
-      
-      
+   
       
       <mat-nav-list>
         <a mat-list-item  [routerLink]="['/cards']"><mat-icon>real_estate_agent</mat-icon> Propiedades</a><br>
         <a mat-list-item  [routerLink]="['/mapa']"><mat-icon>map</mat-icon> Mapa</a><br>
-        <!-- <a mat-list-item  [routerLink]="['/propiedades']"><mat-icon>propiedades</mat-icon> Mapa</a><br> -->
-        <!-- <a mat-list-item  [routerLink]="['/login']"><mat-icon>login</mat-icon> Iniciar Sesión</a><br> 
-        <a mat-list-item  [routerLink]="['/uploadfiles']"><mat-icon>upload</mat-icon> Subir archivo</a><br>-->
-        <!-- <a mat-list-item [routerLink]="['/cliente']"><mat-icon>group</mat-icon> Clientes</a> <br>
-        <a mat-list-item  [routerLink]="['/venta']"><mat-icon>shopping_cart</mat-icon> Venta</a> <br> -->
-
-        <!-- <a mat-list-item href='#'>
-          <mat-icon color="accent">add</mat-icon>
-          Agregar mascota
-        </a>
-        <a mat-list-item href='#'>
-          <mat-icon color="primary">pets</mat-icon>
-          Ver mascotas
-        </a> -->
+        <a mat-list-item  *ngIf="usuario" [routerLink]="['/editUser']"><mat-icon>person</mat-icon> Usuario</a><br>
+        
       </mat-nav-list>
       <mat-accordion>
         
       <app-login></app-login>
-        <!-- <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Más
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <mat-nav-list>
-            <a mat-list-item href='#'>
-              Acerca de
-            </a>
-            <a mat-list-item href='#'>
-              Ayuda
-            </a>
-          </mat-nav-list>
-        </mat-expansion-panel> -->
       </mat-accordion>
     </mat-sidenav>
     <mat-sidenav-content class="padding-10">
@@ -96,33 +49,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-
-<!-- 
-<mat-drawer-container class="global-content">
-  <mat-drawer #drawer mode="side">
-     
-      
-     
-  </mat-drawer>
-
-  <div>
-    <button (click)="drawer.toggle();">Mostrar</button>
-    
-  </div>
-</mat-drawer-container> -->
-
-
-<!-- <footer>
-  Footer
-</footer> -->
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 

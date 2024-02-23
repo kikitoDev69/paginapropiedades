@@ -8,6 +8,7 @@ import { AddpropComponent } from './components/propactions/addprop/addprop.compo
 import { AuthGuard } from './security/auth.guard';
 import { PropscardComponent } from './components/propscard/propscard.component';
 import { VerpropComponent } from './components/propactions/verprop/verprop.component';
+import { EdituserComponent } from './components/user/edituser/edituser.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: "uploadfiles", component: SubirarchivosComponent, canActivate: [AuthGuard]},
   {path: "edit", component: EditarpropComponent, canActivate: [AuthGuard]},
   {path: "add", component: AddpropComponent, canActivate: [AuthGuard]},
+  {path: "editUser", component: EdituserComponent, canActivate: [AuthGuard]},
   {path: "ver", component: VerpropComponent}
 
 

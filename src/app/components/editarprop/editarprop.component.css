@@ -43,3 +43,17 @@ a {
     top:0px;
     /* color: black */
   }
+
+  .eliminar{
+  
+    position:relative;
+    z-index: 1;
+    right:0px;
+    top:0px;
+    /* color: black */
+  }
+
+.item{
+    display: flex;
+    flex-direction: row;
+}

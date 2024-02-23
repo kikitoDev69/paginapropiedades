@@ -25,14 +25,10 @@ usuar$ !: Observable<usuario>;
     this.usuar$ = this.authserv.getUsuar$();
     this.usuar$.subscribe( usuar$ => {this.usuario = usuar$ ;
 
-      //this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
-    }
+         }
     );
    
   }
 
-  // addProperty(){
-
-  // }
 
 }

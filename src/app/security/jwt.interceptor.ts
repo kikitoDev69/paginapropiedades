@@ -13,15 +13,21 @@ export class JwtInterceptor implements HttpInterceptor{
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
         const usuario = this.apiauthService.usuarioData;
         if(usuario){
+            console.log("Si hubo que cambiarle al request")
             req = req.clone({
                 setHeaders: {
                     Authorization: `Bearer ${usuario.token}`
                 }
             });
 
+        }else{
+            console.log("NO hubo que cambiarle al request")
+
         }
+       
         return next.handle(req);
     }
 

@@ -12,6 +12,10 @@
     width: 200px;
 }
 
+.buscador{
+    width: 30%;
+}
+
 
 img {
     max-width: max-content;
@@ -22,4 +26,20 @@ img {
 .limitTextHeight {
     height: 20px;
     overflow: hidden;
+}
+
+.zona {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.visibles{
+    visibility: true;
+}
+
+.ocultos {
+    display:none;
 }

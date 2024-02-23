@@ -22,7 +22,12 @@ export interface propiedadesDB {
      Descripcion : string |null,
      MedidasMin : number|null,
      MedidasMax : number|null,
-
+     link : string|null,
+     crm : string|null,
+     machotes : string|null,
+     otro : string|null,
+     area : number|null,
+     constructora : string |null,
 
 
 }

@@ -1,11 +1,13 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ObjectEvent } from 'ol/Object';
 import { Observable } from 'rxjs';
 import { files } from 'src/app/models/file';
+
+import { fileof } from 'src/app/models/fileof';
 import { propiedadesDB } from 'src/app/models/propiedadesDB';
 
 import { newPropiedadesDB } from 'src/app/models/newPropiedadesDB';
@@ -17,6 +19,15 @@ import { PopupComponent } from '../popup/popup.component';
 import { DialoguploadfileComponent } from './dialoguploadfile/dialoguploadfile.component';
 import { DialogwarnigneditComponent } from './dialogwarnignedit/dialogwarnignedit.component';
 import { DialogwarningdeleteComponent } from './dialogwarningdelete/dialogwarningdelete.component';
+import { ApiAuthService } from 'src/app/services/api-auth.service';
+import { usuario } from 'src/app/models/usuario';
+import { apisrcFile as apisrc } from 'src/app/security/apissource';
+
+
+interface Rol {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-editarprop',
@@ -27,64 +38,102 @@ export class EditarpropComponent implements OnInit {
 
   Files !: files [];
   feature$ !: Observable<number>;
-  apisrc : string = "https://localhost:44335/"
-  idfeature !: number;
 
+  usuario !: usuario;
+  usuario$ !: Observable<usuario>;
+
+  idfeature !: number;
+  apisrc = apisrc;
   descrip = new FormControl(''); 
   readonly width: string = '300';
   propiedades !: props;
 // 
+
+
+roles: Rol[] = [
+  {value: '1', viewValue: 'Administrador'},
+  {value: '2', viewValue: 'Asesores'},
+  {value: '3', viewValue: 'Visitante'},
+];
+
+
+selectedRol1 = this.roles[0].value;
+selectedRol2 = this.roles[1].value;
+selectedRol3 = this.roles[2].value;
+selectedRolNull = ""
+public fileform = this.formBuilder.group({
+  rol: [this.roles[1].value],
+}
+)
+
   propiedadDB : newPropiedadesDB = {
-    id: 0,
-    desarrollo: '',
-    desarrollador: '',
-    zona: '',
-    precioMin: 0,
-    precioMax: 0,
-    tipo: '',
-    apartado: 0,
-    enganche: '',
-    formasDePago: '',
-    meses: 0,
-    financiamiento: '',
-    mantenimiento: '',
-    entrega: new DatePipe(""),
-    disponibilidad: 0,
-    lat: '',
-    lon: '',
-    descripcion: '',
-    medidasMin: 0,
-    medidasMax: 0
+    id: null,
+    desarrollo: null,
+    constructora: null,
+    distribuidora: null,
+    zona: null,
+    precioMin: null,
+    precioMax: null,
+    tipo: null,
+    apartado: null,
+    enganche: null,
+    formasDePago: null,
+    meses: null,
+    financiamiento: null,
+    mantenimiento: null,
+    entrega: null,
+    disponibilidad: null,
+    lat: null,
+    lon: null,
+    descripcion: null,
+    medidasMin: null,
+    medidasMax: null,
+    link: null,
+    crm: null,
+    machotes: null,
+    otro: null,
+    area: null,
+    medidas: null
   };
 
   nuevopropiedadDB : newPropiedadesDB = {
-    id: 0,
-    desarrollo: '',
-    desarrollador: '',
-    zona: '',
-    precioMin: 0,
-    precioMax: 0,
-    tipo: '',
-    apartado: 0,
-    enganche: '',
-    formasDePago: '',
-    meses: 0,
-    financiamiento: '',
-    mantenimiento: '',
-    entrega: new DatePipe(""),
-    disponibilidad: 0,
-    lat: '',
-    lon: '',
-    descripcion: '',
-    medidasMin: 0,
-    medidasMax: 0
+    id: null,
+    desarrollo: null,
+    constructora: null,
+    distribuidora: null,
+    zona: null,
+    precioMin: null,
+    precioMax: null,
+    tipo: null,
+    apartado: null,
+    enganche: null,
+    formasDePago: null,
+    meses: null,
+    financiamiento: null,
+    mantenimiento: null,
+    entrega: null,
+    disponibilidad: null,
+    lat: null,
+    lon: null,
+    descripcion: null,
+    medidasMin: null,
+    medidasMax: null,
+    link: null,
+    crm: null,
+    machotes: null,
+    otro: null,
+    area: null,
+    medidas: null
   };
   date: FormControl =  new FormControl( '');
+
+
 
   constructor(private fservice : FeatureserviceService,  
      private apiprops : ApipropsService, private filesservice :ApiFIlesService,
      private dialog : MatDialog, private snackBar : MatSnackBar, private apiFile : ApiFIlesService,
-     private _location : Location){}
+     private _location : Location, private apiusuario : ApiAuthService, private formBuilder : FormBuilder
+     ){}
 
 
   getFiles(id : string): any{
@@ -108,10 +157,17 @@ response =>
   }
 
 
+
+
 ngOnInit(){
 
   this.feature$ = this.fservice.getfeature$();
   this.feature$.subscribe( feature$ => this.idfeature = feature$ );
+
+  this.usuario$ = this.apiusuario.getUsuar$();
+  this.usuario$.subscribe( feature$ => this.usuario = feature$ );
+
+
   // this.idfeature = this.popup.datafeature
 
   //es un objeto
@@ -199,7 +255,9 @@ this.obtenerFIles();
  }
     
  obtenerFIles(){
-  this.filesservice.getFiles(""+this.idfeature).subscribe(
+  var request : fileof =  {email: this.usuario.email, id: this.idfeature};
+  console.log(request)
+  this.filesservice.getFilesof(request).subscribe(
     response =>
     {
       console.log(response)
@@ -228,6 +286,10 @@ this.obtenerFIles();
  }
 
  enviarEdit(nuevaprop : newPropiedadesDB){
+
+  nuevaprop.descripcion = this.descrip.value
+  nuevaprop.entrega = this.date.value
+
   const dialogRef = this.dialog.open(DialogwarnigneditComponent, {
     width: this.width,
    
@@ -267,6 +329,7 @@ this.obtenerFIles();
           this.snackBar.open('Propiedad eliminada con éxito', '', {
             duration: 2000
           })
+          this.backClicked()
           
         }else{
           this.snackBar.open('Error al eliminar propiedad', '', {
@@ -379,8 +442,9 @@ public deleteFile(id : number){
         if(response.exito===1){
           this.snackBar.open('Archivo eliminada con éxito', '', {
             duration: 2000
-          })
-          
+
+
+          })       
           this.obtenerFIles()
         }else{
           this.snackBar.open('Error al eliminar propiedad', '', {
@@ -401,6 +465,92 @@ public deleteFile(id : number){
 backClicked() {
   this._location.back();
 }
+
+
+
+select(rol : number , idfile : number){
+    
+  var archivo : files = {
+    idfiles: idfile, 
+    rol:  Number(rol),
+    id: 0,
+    tipo: 0,
+    link: '',
+    basesrc: '',
+    src: '',
+    who: ''
+  }
+  console.log(archivo)
+  this.apiFile.updatePrivacy(archivo).subscribe( response =>
+    
+    {
+      if(response.exito===1){
+        this.snackBar.open('Privacidad cambiada con éxito', '', {
+          duration: 2000
+        })
+        this.obtenerFIles();
+      }else{
+        this.snackBar.open('No se pudo cambiar la privacidad ', '', {
+          duration: 2000
+        })
+      }
+    })
+
+  }
+
+
+  setData() {
+    this.nuevopropiedadDB.descripcion = this.descrip.value
+    this.nuevopropiedadDB.entrega = this.date.value
+    localStorage.setItem('nuevaPropiedad', JSON.stringify(this.nuevopropiedadDB));
+  }
+  
+  // setDataNull() {
+  //   localStorage.removeItem('nuevaPropiedad');
+    
+  //   this.loginForm.setValue({
+  //     Id: 0,
+  //     Desarrollo: '',
+  //     Desarrollador: '',
+  //     Zona: '',
+  //     PrecioMin: 0,
+  //     PrecioMax: 0,
+  //     Tipo: '',
+  //     Apartado: 0,
+  //     Enganche: '',
+  //     FormasDePago: '',
+  //     Meses: 0,
+  //     Financiamiento: '',
+  //     Mantenimiento: '',
+  //     Entrega: new DatePipe(""),
+  //     Disponibilidad: 0,
+  //     Lat: '',
+  //     Lon: '',
+  //     Descripcion: '',
+  //     MedidasMin: 0,
+  //     MedidasMax: 0
+  //   });
+  //   this.descrip.setValue("")
+  //   this.date.setValue("")
+  
+  // }
+  
+  
+  
+  getData() {
+  
+    var data = JSON.parse(localStorage.getItem('nuevaPropiedad')!);
+    if(data){
+  
+      this.nuevopropiedadDB =data;
+     // this.nuevopropiedadDB = data
+      this.descrip.setValue(  this.nuevopropiedadDB.descripcion);
+      this.date.setValue(this.nuevopropiedadDB.entrega)
+  
+    }
+  }
+
+
 
     }
 

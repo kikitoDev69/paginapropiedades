@@ -1,11 +1,12 @@
 <div class="cointainer">
-    <button     class="regresaricon" mat-raised-button (click)="backClicked()"><mat-icon>kewyboard_return</mat-icon>Regresar</button>
+    <button     class="regresaricon" mat-raised-button (click)="backClicked()"><mat-icon>keyboard_return</mat-icon>Regresar</button>
+    <button  *ngIf="usuario"   class="regresaricon"  mat-raised-button (click)="editar()"><mat-icon>edit</mat-icon>Editar</button>
        
 
     <h2 class="titulos">{{propiedadDB.desarrollo}}</h2>
 
     <h3 class="titulos">{{propiedadDB.zona}}</h3>
-    <h3 class="titulos">{{propiedadDB.desarrollador}}</h3>
+    <h3 class="titulos">{{propiedadDB.distribuidora}}</h3>
 
     <div class="imagen"  *ngFor="let file of Files">
 
@@ -17,8 +18,8 @@
     <h3><p class="descripcion" >{{propiedadDB.descripcion}}</p></h3>
 
 
-    <mat-grid-list cols="2">
-        <mat-grid-tile>
+    <div  fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="space-around" >
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="75%"  >
 
             <mat-list role="list">
                 <mat-list-item role="listitem"><mat-icon>price_check</mat-icon>Precios</mat-list-item>
@@ -29,32 +30,33 @@
                 <mat-list-item *ngIf="propiedadDB.enganche" role="listitem"><mat-icon>money</mat-icon>Enganche: {{propiedadDB.apartado}}</mat-list-item>
                 <mat-list-item *ngIf="propiedadDB.formasDePago" role="listitem"><mat-icon>money</mat-icon>Formas de pago: {{propiedadDB.formasDePago}}</mat-list-item>
                 <mat-list-item *ngIf="propiedadDB.meses" role="listitem"><mat-icon>calendar_month</mat-icon>Meses: {{propiedadDB.meses}}</mat-list-item>
+              
+                <mat-list-item *ngIf="propiedadDB.financiamiento" role="listitem"><mat-icon>money</mat-icon>Financiamiento: {{propiedadDB.financiamiento}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.mantenimiento" role="listitem"><mat-icon>buil_circle</mat-icon>Mantenimiento: {{propiedadDB.mantenimiento}}</mat-list-item>
+                <mat-list-item *ngIf="propiedadDB.disponibilidad" role="listitem"><mat-icon>report_problem</mat-icon>!Solo quedan {{propiedadDB.disponibilidad}} disponibles!</mat-list-item>
+            
+                <mat-list-item *ngIf="propiedadDB.medidas" role="listitem"><mat-icon>height</mat-icon>Medidas: {{propiedadDB.medidas}}</mat-list-item>
+               
               </mat-list>
 
-            </mat-grid-tile>
+                <div>
+              <div *ngIf="dateseleccionada===dateInmediata" ><h3>¡Entrega Inmediata!</h3>       </div>
+              
+              <div *ngIf="propiedadDB.entrega && dateseleccionada !==dateInmediata"><h3>Entrega: {{dateseleccionada}}</h3>
+                  <mat-calendar    [(selected)]="dateCalendar" [startAt]="dateCalendar"></mat-calendar>
+              </div>
+
+            </div>
+  </div>
+  </div>  
 
 
-            <mat-grid-tile>
-                    <div *ngIf="dateseleccionada===dateInmediata" ><h3>¡Entrega Inmediata!</h3>
-                    </div>
-                    
-                    <div *ngIf="propiedadDB.entrega && dateseleccionada !==dateInmediata"><h3>Entrega: {{dateseleccionada}}</h3>
-                        <mat-calendar    [(selected)]="dateCalendar" [startAt]="dateCalendar"></mat-calendar>
-                    </div>
-                  
-                   
-            </mat-grid-tile>
-
-
-
-
-            </mat-grid-list>
 
 
             <div fxLayout="row wrap"  fxLayoutAlign="space-around" fxLayoutGap="16px grid">
                 <div fxFlex="20%" fxFlex.xs="99%" fxFlex.sm="33%" *ngFor="let file of Files" >
             
-                    <div class="archivo" >
+                    <div  *ngIf="file.tipo===2" class="archivo" >
                         <a mat-button [href]="apisrc + file.src" target="_blank">
                             {{file.who}}
                             <br>
@@ -62,12 +64,19 @@
 
 
                         </a>
-                       
-                           
-
-                     
-
                     </div>
+
+                    <div  *ngIf="file.tipo===3" class="archivo" >
+                        <a mat-button [href]="file.link" target="_blank">
+                            {{file.who}}
+                            <br>
+                            <mat-icon class="icono">link</mat-icon>
+
+
+                        </a>
+                    </div>
+
+                    
 
 
 

@@ -9,6 +9,11 @@ interface Tipos {
   viewValue: string;
 }
 
+interface Rol {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-dialoguploadfile',
   templateUrl: './dialoguploadfile.component.html',
@@ -25,6 +30,14 @@ export class DialoguploadfileComponent {
     {value: '3', viewValue: 'Link'},
     {value: '4', viewValue: 'Portada'},
   ];
+
+
+  roles: Rol[] = [
+    {value: '1', viewValue: 'Administrador'},
+    {value: '2', viewValue: 'Asesores'},
+    {value: '3', viewValue: 'Visitante'},
+  ];
+
   constructor(private formBuilder : FormBuilder,
     @Inject(MAT_DIALOG_DATA) public id : number, private apiFile : ApiFIlesService,
     private snackBar : MatSnackBar,
@@ -36,6 +49,7 @@ export class DialoguploadfileComponent {
       nombre: ['', Validators.required],
       tipo: ['', Validators.required],
       link: [''],
+      rol: [""+this.roles[2]],
     }
     )
   
@@ -69,6 +83,9 @@ export class DialoguploadfileComponent {
           formData.append('link', InfoArchivo.link);
         
           }
+
+          formData.append('rol', ""+InfoArchivo.rol);
+
     
         
        
@@ -92,18 +109,7 @@ export class DialoguploadfileComponent {
                 verticalPosition: 'top',
             })
             this.dialogRef.close(false)
-          //   if(event.type=== HttpEventType.UploadProgress){
-          //     if(event.total)
-          //   {
-          //        this.progress = Math.round(100 * event.loaded / event.total);
-          //    }     
-    
-          //  }else
-          //   if(event.type=== HttpEventType.Response){
-    
-          //   this.message= 'Carga exitosa';
-          //   this.onUploadFinished.emit(event.body);
-          //  }
+         
           }
         }
         )
@@ -138,6 +144,8 @@ export class DialoguploadfileComponent {
         
           }
     
+          formData.append('rol', ""+InfoArchivo.rol);
+
         
        
        
@@ -160,18 +168,7 @@ export class DialoguploadfileComponent {
                 verticalPosition: 'top',
             })
             this.dialogRef.close(false)
-          //   if(event.type=== HttpEventType.UploadProgress){
-          //     if(event.total)
-          //   {
-          //        this.progress = Math.round(100 * event.loaded / event.total);
-          //    }     
-    
-          //  }else
-          //   if(event.type=== HttpEventType.Response){
-    
-          //   this.message= 'Carga exitosa';
-          //   this.onUploadFinished.emit(event.body);
-          //  }
+       
           }
         }
         )
@@ -187,4 +184,6 @@ export class DialoguploadfileComponent {
   nombre?: string | null | undefined;
   tipo?: string | null  | undefined;
   link? : string |null  | undefined;
+  rol? : string |null  | undefined;
+  
 }

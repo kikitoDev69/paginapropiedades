@@ -4,7 +4,8 @@ export interface newPropiedadesDB {
 
     id : number |null;
     desarrollo :string|null ,
-    desarrollador : string |null,
+    constructora : string |null,
+    distribuidora : string |null,
     zona : string |null,
     precioMin : number|null,
     precioMax : number|null,
@@ -21,8 +22,13 @@ export interface newPropiedadesDB {
     lon : string|null,
     descripcion : string |null,
     medidasMin : number|null,
+    medidas : string|null,
     medidasMax : number|null,
-    imagenesprueba ?: any | null,
+    link : string|null,
+    crm : string|null,
+    machotes : string|null,
+    otro : string|null,
+    area : number|null,
     files ?: any[] | null
 
 

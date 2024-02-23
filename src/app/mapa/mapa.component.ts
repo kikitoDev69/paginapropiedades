@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { ApiAuthService } from '../services/api-auth.service';
 import { usuario } from '../models/usuario';
 import { Observable } from 'rxjs';
-
+import { apisrcFile as apisrc} from '../security/apissource';
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 export class MapaComponent implements OnInit{
 
 
-  apisrc : string = "https://localhost:44335/"
+  apisrc = apisrc;
   propiedad : features = {
     id : 0,
     desarrollo : "",
@@ -59,7 +59,11 @@ constructor(private router : Router, private apiAuth: ApiAuthService){
 
 }
 
+  
+
+
   ngOnInit(): void {
+
 
 
 
@@ -85,7 +89,7 @@ constructor(private router : Router, private apiAuth: ApiAuthService){
     this.usuar$ = this.apiAuth.getUsuar$();
     this.usuar$.subscribe( usuar$ => {this.usuario = usuar$ ;
 
-      //this.usuario ? this.loginfrase = "Cerrar Sesión" : this.loginfrase = "Iniciar Sesión"
+     
     }
     );
    

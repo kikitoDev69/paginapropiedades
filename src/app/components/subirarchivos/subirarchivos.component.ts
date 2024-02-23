@@ -30,24 +30,12 @@ public uploadFile = (files: any) =>{
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('files', fileToUpload, fileToUpload.name);
-  //  formData.append('who','precios' );
-   // formData.append('Id', '52' );
+
     this.apiFile.uploadFile(formData).subscribe(
       response => {
         console.log(response.mensaje)
 
-      //   if(event.type=== HttpEventType.UploadProgress){
-      //     if(event.total)
-      //   {
-      //        this.progress = Math.round(100 * event.loaded / event.total);
-      //    }     
 
-      //  }else
-      //   if(event.type=== HttpEventType.Response){
-
-      //   this.message= 'Carga exitosa';
-      //   this.onUploadFinished.emit(event.body);
-      //  }
       }
     )
 

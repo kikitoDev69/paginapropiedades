@@ -12,6 +12,7 @@ export interface files {
     basesrc : string  ,
     src :  string ,
     who : string
+    rol : number
 }
 
 

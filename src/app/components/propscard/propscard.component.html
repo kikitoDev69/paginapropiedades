@@ -1,26 +1,72 @@
+<div>
+
+  <mat-form-field class="buscador">
+    <mat-label>Zona</mat-label>
+  <input matInput [(ngModel)]="zonamil" type="text" placeholder="Ingrese zona a buscar...">
+
+  <button *ngIf="zonamil" matSuffix mat-icon-button aria-label="Clear" (click)="zonamil=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-form-field class="buscador">
+  <mat-label>Desarrollo</mat-label>
+<input matInput [(ngModel)]="desarrollofilter" type="text" placeholder="Ingrese desarrollo a buscar...">
+
+<button *ngIf="desarrollofilter" matSuffix mat-icon-button aria-label="Clear" (click)="desarrollofilter=''">
+  <mat-icon>close</mat-icon>
+</button>
+</mat-form-field>
+
+<mat-chip-listbox aria-label="selection" selectable multiple >
+  <mat-chip-option color="accent" selected    (click)="descripcion =!descripcion">Descripcion</mat-chip-option>
+  <mat-chip-option color="accent" (click)="medidasBehav()">Medidas</mat-chip-option>
+  <mat-chip-option color="accent" (click)="precios =!precios">Precios</mat-chip-option>
+  <mat-chip-option color="accent" (click)="tipos =!tipos">Tipos</mat-chip-option>
+
+</mat-chip-listbox>
+
+  </div>
+
+
 <div class="content">
    
-    <div class="zon" *ngFor="let zona  of zonas" >
-   
-    <div *ngIf=" propiedades   | zoneFilter : zona  as result" > {{zona}} ({{result.length}})</div>
-          <mat-divider></mat-divider>
 
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let prop of propiedades   | zoneFilter : zona  as result" >
+
+
+    <div class="zon" *ngFor="let zona  of zonasArray | zoneFilterProp: zonamil" >
+   
+    <div *ngIf=" propiedades   | zoneFilter : zona | desarrolloFilter : desarrollofilter  as result  " > <button  class="zona" mat-raised-button color="accent"  *ngIf="result.length > 0 "> {{zona}} ({{result.length}})</button>
+        
+
+    <div *ngIf="result.length > 0" fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let prop of propiedades   | zoneFilter : zona  | desarrolloFilter : desarrollofilter" >
   
         <mat-card class="example-card">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
+              <!-- <div mat-card-avatar class="example-header-image"></div> -->
               <mat-card-title>{{prop.desarrollo}}</mat-card-title>
               <mat-card-subtitle>{{prop.zona}}</mat-card-subtitle>
             </mat-card-header>
-            <img *ngIf="obtainportada(prop.id)" mat-card-image [src]="apisrc + obtainportada(prop.id) " alt="Photo of $`prop.desarrollo">
+            <img *ngIf="obtainportada(prop.id)" mat-card-image [src]="apiscr + obtainportada(prop.id) " alt="Photo of $`prop.desarrollo">
             <mat-card-content>
-              <div [ngClass]="{'limitTextHeight ': isReadMore}">
+              <div [ngClass]="{'limitTextHeight ': isReadMore, 'ocultos': descripcion}">
                 {{prop.descripcion}}
               </div>
+              <div [ngClass]="{'ocultos': medidas}  ">
+                {{prop.medidas}}
+              </div>
+              <div [ngClass]="{'ocultos': precios}  ">
+                {{prop.precioMin |  currency: 'MXN'}}
+              </div>
+              <div [ngClass]="{'ocultos': precios }  ">
+                {{prop.precioMax |  currency: 'MXN'}}
+              </div>
+              <div [ngClass]="{'ocultos': tipos }  ">
+                {{prop.tipo}}
+              </div>
               
-               <button mat-button type="button" (click)="showText()">
+               <button *ngIf="!descripcion"  mat-button type="button" (click)="showText()">
                  {{ isReadMore ? 'Leer más': 'Leer menos' }}
               </button>
 
@@ -32,7 +78,6 @@
           </mat-card>
 
 
-     
         </div>
     </div>
 </div>
