@@ -94,7 +94,7 @@ export class ApiPropsComponent implements OnInit{
             style: estiloDesarrollos,
             //  style: estilosnuevasrutas,
            declutter: true,
-           visible: true,
+           visible: false,
            renderBuffer: 512
        
           } as GroupLayerOptions
@@ -128,7 +128,7 @@ export class ApiPropsComponent implements OnInit{
               style: estiloAreas,
               //  style: estilosnuevasrutas,
              declutter: true,
-             visible: false,
+             visible: true,
                renderBuffer: 512
          
             } as GroupLayerOptions

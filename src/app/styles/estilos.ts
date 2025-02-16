@@ -65,7 +65,7 @@ export const estilosRutas = function (feature : any) {
 
   text: new Text({
     text: feature.get("desarrollo"),
-    font: "17px sans-serif",
+    font: "20px sans-serif",
     offsetX: 10,
     textAlign: "left",
     fill: new Fill({

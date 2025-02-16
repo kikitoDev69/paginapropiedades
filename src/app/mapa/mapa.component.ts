@@ -69,8 +69,9 @@ constructor(private router : Router, private apiAuth: ApiAuthService){
 
 
     if(this.map){
-
+      console.log("mapa hecho no crear")
     }else{
+      console.log("mapa no hecho, crear")
       this.map = new Map({
         view: new View({
           center: transform([-89.625514 , 20.968206 ],  'EPSG:4326', 'EPSG:3857'),
